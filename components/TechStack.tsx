@@ -1,84 +1,39 @@
 "use client";
 
 const categories = [
-  {
-    name: "Frontend",
-    color: "var(--purple)",
-    tools: [
-      { name: "Next.js",     emoji: "▲" },
-      { name: "React",       emoji: "⚛️" },
-      { name: "TypeScript",  emoji: "📘" },
-      { name: "Tailwind",    emoji: "🎨" },
-      { name: "Framer",      emoji: "🎭" },
-    ],
-  },
-  {
-    name: "Backend",
-    color: "var(--cyan)",
-    tools: [
-      { name: "Node.js",     emoji: "🟢" },
-      { name: "Python",      emoji: "🐍" },
-      { name: "Express",     emoji: "🚂" },
-      { name: "PostgreSQL",  emoji: "🐘" },
-      { name: "MongoDB",     emoji: "🍃" },
-    ],
-  },
-  {
-    name: "Creative",
-    color: "var(--pink)",
-    tools: [
-      { name: "Figma",         emoji: "🖌️" },
-      { name: "Photoshop",     emoji: "🖼️" },
-      { name: "Illustrator",   emoji: "✏️" },
-      { name: "Premiere Pro",  emoji: "🎬" },
-      { name: "After Effects", emoji: "✨" },
-    ],
-  },
-  {
-    name: "Tools & Cloud",
-    color: "var(--purple)",
-    tools: [
-      { name: "Git",       emoji: "🔀" },
-      { name: "GitHub",    emoji: "🐙" },
-      { name: "Vercel",    emoji: "▲" },
-      { name: "Firebase",  emoji: "🔥" },
-      { name: "Linux",     emoji: "🐧" },
-    ],
-  },
+  { name:"Frontend",     color:"#8b5cf6", tools:[{n:"Next.js",e:"▲"},{n:"React",e:"⚛️"},{n:"TypeScript",e:"📘"},{n:"Tailwind",e:"🎨"},{n:"Framer",e:"🎭"}] },
+  { name:"Backend",      color:"#06b6d4", tools:[{n:"Node.js",e:"🟢"},{n:"Python",e:"🐍"},{n:"Express",e:"🚂"},{n:"PostgreSQL",e:"🐘"},{n:"MongoDB",e:"🍃"}] },
+  { name:"Creative",     color:"#f472b6", tools:[{n:"Figma",e:"🖌️"},{n:"Photoshop",e:"🖼️"},{n:"Illustrator",e:"✏️"},{n:"Premiere Pro",e:"🎬"},{n:"After Effects",e:"✨"}] },
+  { name:"Tools & Cloud",color:"#a78bfa", tools:[{n:"Git",e:"🔀"},{n:"GitHub",e:"🐙"},{n:"Vercel",e:"▲"},{n:"Firebase",e:"🔥"},{n:"Linux",e:"🐧"}] },
+];
+
+const languages = [
+  { lang:"Amharic", level:"Native",        flag:"🇪🇹" },
+  { lang:"English", level:"Fluent",         flag:"🇬🇧" },
+  { lang:"Oromo",   level:"Conversational", flag:"🌿" },
 ];
 
 export default function TechStack() {
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-sm font-medium tracking-widest uppercase mb-2" style={{ color: "var(--purple)" }}>
-            Tools I Use
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--t1)" }}>
-            Tech <span className="gradient-text">Stack</span>
-          </h2>
+    <section style={{ padding:"6rem 1.5rem" }}>
+      <div style={{ maxWidth:1152, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:"4rem" }}>
+          <p style={{ color:"var(--purple)", fontSize:"0.75rem", fontWeight:600, letterSpacing:"0.15em", textTransform:"uppercase", marginBottom:"0.5rem" }}>Tools I Use</p>
+          <h2 style={{ fontSize:"clamp(1.75rem,4vw,2.25rem)", fontWeight:800, color:"var(--t1)" }}>Tech <span className="gradient-text">Stack</span></h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat) => (
-            <div
-              key={cat.name}
-              className="glass rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300"
-              style={{ borderTop: `3px solid ${cat.color}` }}
-            >
-              <h3 className="font-bold text-sm tracking-widest uppercase mb-5" style={{ color: cat.color }}>
-                {cat.name}
-              </h3>
-              <div className="space-y-3">
-                {cat.tools.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2 transition-all duration-200 hover:translate-x-1 cursor-default"
-                    style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:"1.25rem", marginBottom:"2.5rem" }}>
+          {categories.map(cat => (
+            <div key={cat.name} className="glass" style={{ borderRadius:20, padding:"1.5rem", borderTop:`3px solid ${cat.color}` }}>
+              <h3 style={{ fontSize:"0.75rem", fontWeight:700, letterSpacing:"0.12em", textTransform:"uppercase", color:cat.color, marginBottom:"1.25rem" }}>{cat.name}</h3>
+              <div style={{ display:"flex", flexDirection:"column", gap:"0.6rem" }}>
+                {cat.tools.map(t => (
+                  <div key={t.n} className="glass" style={{ borderRadius:10, padding:"0.5rem 0.75rem", display:"flex", alignItems:"center", gap:"0.75rem", transition:"transform 0.15s" }}
+                    onMouseEnter={e=>(e.currentTarget.style.transform="translateX(4px)")}
+                    onMouseLeave={e=>(e.currentTarget.style.transform="translateX(0)")}
                   >
-                    <span className="text-lg w-6 text-center">{tool.emoji}</span>
-                    <span className="text-sm font-medium" style={{ color: "var(--t1)" }}>{tool.name}</span>
+                    <span style={{ fontSize:"1.1rem", width:24, textAlign:"center" }}>{t.e}</span>
+                    <span style={{ fontSize:"0.875rem", fontWeight:500, color:"var(--t1)" }}>{t.n}</span>
                   </div>
                 ))}
               </div>
@@ -86,26 +41,16 @@ export default function TechStack() {
           ))}
         </div>
 
-        {/* Language spoken section */}
-        <div className="mt-12 glass rounded-2xl p-8" style={{ borderColor: "var(--border-hi)" }}>
-          <h3 className="font-bold text-center mb-6 text-sm tracking-widest uppercase" style={{ color: "var(--purple)" }}>
-            🌍 Languages Spoken
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { lang: "Amharic",  level: "Native",       flag: "🇪🇹" },
-              { lang: "English",  level: "Fluent",        flag: "🇬🇧" },
-              { lang: "Oromo",    level: "Conversational",flag: "🌿" },
-            ].map((l) => (
-              <div
-                key={l.lang}
-                className="flex items-center gap-3 px-5 py-3 rounded-full"
-                style={{ background: "var(--bg-card)", border: "1px solid var(--border-hi)" }}
-              >
-                <span className="text-xl">{l.flag}</span>
+        {/* Languages */}
+        <div className="glass" style={{ borderRadius:20, padding:"2rem", border:"1px solid var(--border-hi)" }}>
+          <h3 style={{ fontWeight:700, textAlign:"center", marginBottom:"1.5rem", fontSize:"0.75rem", letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--purple)" }}>🌍 Languages Spoken</h3>
+          <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:"1rem" }}>
+            {languages.map(l => (
+              <div key={l.lang} className="glass" style={{ display:"flex", alignItems:"center", gap:"0.75rem", padding:"0.75rem 1.5rem", borderRadius:999, border:"1px solid var(--border-hi)" }}>
+                <span style={{ fontSize:"1.5rem" }}>{l.flag}</span>
                 <div>
-                  <p className="font-semibold text-sm" style={{ color: "var(--t1)" }}>{l.lang}</p>
-                  <p className="text-xs" style={{ color: "var(--t3)" }}>{l.level}</p>
+                  <p style={{ fontWeight:600, fontSize:"0.875rem", color:"var(--t1)" }}>{l.lang}</p>
+                  <p style={{ fontSize:"0.7rem", color:"var(--t3)" }}>{l.level}</p>
                 </div>
               </div>
             ))}

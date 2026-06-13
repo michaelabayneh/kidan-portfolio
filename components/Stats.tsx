@@ -2,59 +2,48 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 15, suffix: "+", label: "Projects Completed", icon: "🚀" },
-  { value: 3,  suffix: "+", label: "Years of Experience", icon: "💼" },
-  { value: 5,  suffix: "",  label: "Technologies Mastered", icon: "⚡" },
-  { value: 98, suffix: "%", label: "Client Satisfaction", icon: "🌟" },
+  { value:15, suffix:"+", label:"Projects Completed", icon:"🚀" },
+  { value:3,  suffix:"+", label:"Years Experience",   icon:"💼" },
+  { value:5,  suffix:"",  label:"Technologies",       icon:"⚡" },
+  { value:98, suffix:"%", label:"Client Satisfaction",icon:"🌟" },
 ];
 
-function CountUp({ target, suffix }: { target: number; suffix: string }) {
+function CountUp({ target, suffix }: { target:number; suffix:string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
-
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !started.current) {
         started.current = true;
-        let start = 0;
-        const duration = 1800;
-        const step = (timestamp: number, startTime: number) => {
-          const progress = Math.min((timestamp - startTime) / duration, 1);
-          const ease = 1 - Math.pow(1 - progress, 3);
-          setCount(Math.floor(ease * target));
-          if (progress < 1) requestAnimationFrame((t) => step(t, startTime));
+        const step = (ts: number, t0: number) => {
+          const p = Math.min((ts - t0) / 1800, 1);
+          setCount(Math.floor((1 - Math.pow(1 - p, 3)) * target));
+          if (p < 1) requestAnimationFrame(t => step(t, t0));
         };
-        requestAnimationFrame((t) => step(t, t));
+        requestAnimationFrame(t => step(t, t));
       }
     }, { threshold: 0.5 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, [target]);
-
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
 export default function Stats() {
   return (
-    <section className="py-16 px-4">
-      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((s) => (
-          <div
-            key={s.label}
-            className="glass rounded-2xl p-6 text-center hover:scale-105 transition-all duration-300 group"
-            style={{ borderColor: "var(--border-hi)" }}
+    <section style={{ padding:"4rem 1.5rem" }}>
+      <div style={{ maxWidth:1000, margin:"0 auto", display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:"1rem" }}>
+        {stats.map(s => (
+          <div key={s.label} className="glass" style={{ borderRadius:20, padding:"1.75rem 1rem", textAlign:"center", border:"1px solid var(--border-hi)", transition:"transform 0.3s" }}
+            onMouseEnter={e=>(e.currentTarget.style.transform="scale(1.05)")}
+            onMouseLeave={e=>(e.currentTarget.style.transform="scale(1)")}
           >
-            <div className="text-3xl mb-2">{s.icon}</div>
-            <div
-              className="text-3xl sm:text-4xl font-black mb-1"
-              style={{ color: "var(--purple)" }}
-            >
+            <div style={{ fontSize:"2rem", marginBottom:"0.5rem" }}>{s.icon}</div>
+            <div style={{ fontSize:"2.25rem", fontWeight:900, color:"var(--purple)", lineHeight:1 }}>
               <CountUp target={s.value} suffix={s.suffix} />
             </div>
-            <p className="text-xs font-medium tracking-wide uppercase" style={{ color: "var(--t3)" }}>
-              {s.label}
-            </p>
+            <p style={{ fontSize:"0.7rem", fontWeight:600, color:"var(--t3)", textTransform:"uppercase", letterSpacing:"0.1em", marginTop:"0.4rem" }}>{s.label}</p>
           </div>
         ))}
       </div>

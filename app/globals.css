@@ -1,44 +1,62 @@
 ﻿@import "tailwindcss";
 
 :root, [data-theme="dark"] {
-  --bg: #05050f; --bg-card: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.09);
-  --border-hi: rgba(139,92,246,0.45); --t1: #f0f0f5; --t2: #a1a1b5; --t3: #6b6b80;
-  --inp-bg: rgba(255,255,255,0.06); --inp-border: rgba(255,255,255,0.13);
-  --purple: #8b5cf6; --cyan: #06b6d4; --pink: #f472b6;
-  --blob1: rgba(124,58,237,0.22); --blob2: rgba(8,145,178,0.15); --blob3: rgba(219,39,119,0.10);
-  --grid: rgba(139,92,246,0.06); --nav-bg: rgba(5,5,15,0.80); --footer-line: rgba(255,255,255,0.08); --p-op: 0.55;
+  --bg:        #05050f;
+  --bg-card:   rgba(255,255,255,0.04);
+  --border:    rgba(255,255,255,0.09);
+  --border-hi: rgba(139,92,246,0.45);
+  --t1:        #f0f0f5;
+  --t2:        #a1a1b5;
+  --t3:        #6b6b80;
+  --inp-bg:    rgba(255,255,255,0.06);
+  --inp-border:rgba(255,255,255,0.13);
+  --purple:    #8b5cf6;
+  --cyan:      #06b6d4;
+  --pink:      #f472b6;
+  --nav-bg:    rgba(5,5,15,0.85);
+  --p-op:      0.55;
 }
 [data-theme="light"] {
-  --bg: #eeebff; --bg-card: rgba(255,255,255,0.78); --border: rgba(124,58,237,0.15);
-  --border-hi: rgba(124,58,237,0.50); --t1: #1e1b4b; --t2: #3730a3; --t3: #7c3aed;
-  --inp-bg: rgba(255,255,255,0.90); --inp-border: rgba(124,58,237,0.28);
-  --purple: #7c3aed; --cyan: #0891b2; --pink: #db2777;
-  --blob1: rgba(167,139,250,0.35); --blob2: rgba(6,182,212,0.22); --blob3: rgba(244,114,182,0.18);
-  --grid: rgba(124,58,237,0.07); --nav-bg: rgba(238,235,255,0.85); --footer-line: rgba(124,58,237,0.15); --p-op: 0.28;
+  --bg:        #eeebff;
+  --bg-card:   rgba(255,255,255,0.78);
+  --border:    rgba(124,58,237,0.15);
+  --border-hi: rgba(124,58,237,0.50);
+  --t1:        #1e1b4b;
+  --t2:        #3730a3;
+  --t3:        #7c3aed;
+  --inp-bg:    rgba(255,255,255,0.90);
+  --inp-border:rgba(124,58,237,0.28);
+  --purple:    #7c3aed;
+  --cyan:      #0891b2;
+  --pink:      #db2777;
+  --nav-bg:    rgba(238,235,255,0.85);
+  --p-op:      0.28;
 }
-*,*::before,*::after{box-sizing:border-box}
-body{background:var(--bg);color:var(--t1);font-family:Arial,Helvetica,sans-serif;scroll-behavior:smooth;overflow-x:hidden;transition:background 0.35s ease,color 0.35s ease}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
-@keyframes float-slow{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes pulse-glow{0%,100%{box-shadow:0 0 18px rgba(139,92,246,0.4)}50%{box-shadow:0 0 48px rgba(139,92,246,0.9)}}
+body{background:var(--bg);color:var(--t1);font-family:Arial,sans-serif;overflow-x:hidden;transition:background .4s,color .4s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+@keyframes float-slow{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(139,92,246,.4)}50%{box-shadow:0 0 50px rgba(139,92,246,.9),0 0 80px rgba(6,182,212,.3)}}
 @keyframes grad-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes spin-slow{to{transform:rotate(360deg)}}
 @keyframes spin-reverse{to{transform:rotate(-360deg)}}
-@keyframes twinkle{0%,100%{opacity:0.1;transform:scale(1)}50%{opacity:0.8;transform:scale(1.4)}}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(.8)}50%{opacity:.9;transform:scale(1.3)}}
 @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
-@keyframes theme-pop{0%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.3) rotate(20deg)}100%{transform:scale(1) rotate(0deg)}}
-.animate-float{animation:float 6s ease-in-out infinite}
-.animate-float-slow{animation:float-slow 9s ease-in-out infinite}
+@keyframes theme-pop{0%{transform:scale(1) rotate(0)}50%{transform:scale(1.25) rotate(15deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes aurora{0%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-30px) scale(1.1)}100%{transform:translate(0,0) scale(1)}}
+@keyframes wave-x{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.animate-float{animation:float 7s ease-in-out infinite}
+.animate-float-slow{animation:float-slow 10s ease-in-out infinite}
 .animate-pulse-glow{animation:pulse-glow 3s ease-in-out infinite}
-.animate-spin-slow{animation:spin-slow 20s linear infinite}
-.animate-spin-rev{animation:spin-reverse 15s linear infinite}
-.animate-theme-pop{animation:theme-pop 0.4s ease}
+.animate-spin-slow{animation:spin-slow 22s linear infinite}
+.animate-spin-rev{animation:spin-reverse 16s linear infinite}
+.animate-theme-pop{animation:theme-pop .4s ease}
 .gradient-text{background:linear-gradient(135deg,#a78bfa,#06b6d4,#f472b6,#a78bfa);background-size:300% 300%;animation:grad-shift 5s ease infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.glass{background:var(--bg-card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--border);transition:background 0.35s ease,border-color 0.35s ease}
-.bg-grid{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:60px 60px}
+.glass{background:var(--bg-card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);transition:background .35s,border-color .35s}
+.bg-grid{background-image:linear-gradient(rgba(139,92,246,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.05) 1px,transparent 1px);background-size:80px 80px}
 .shimmer-card{position:relative;overflow:hidden}
-.shimmer-card::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.06) 50%,transparent 60%);background-size:200% 100%;animation:shimmer 3s linear infinite;pointer-events:none;z-index:1}
-::-webkit-scrollbar{width:5px}
+.shimmer-card::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);background-size:200% 100%;animation:shimmer 3.5s linear infinite;pointer-events:none;z-index:1}
+::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--purple),var(--cyan));border-radius:3px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--purple),var(--cyan));border-radius:4px}

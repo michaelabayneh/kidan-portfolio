@@ -9,19 +9,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("Home");
-  const [popping, setPopping] = useState(false);
   const { theme, toggle } = useTheme();
 
-  /* track scroll position to highlight active section */
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
       for (const l of [...links].reverse()) {
         const el = document.getElementById(l.toLowerCase());
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActive(l);
-          break;
-        }
+        if (el && window.scrollY >= el.offsetTop - 120) { setActive(l); break; }
       }
     };
     window.addEventListener("scroll", onScroll);
@@ -34,100 +29,91 @@ export default function Navbar() {
     document.getElementById(link.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleToggle = () => {
-    setPopping(true);
-    toggle();
-    setTimeout(() => setPopping(false), 400);
-  };
-
   return (
-    <nav
-      className="fixed top-0 w-full z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? "var(--nav-bg)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--border)" : "none",
-        boxShadow: scrolled ? "0 2px 32px rgba(0,0,0,0.15)" : "none",
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+      transition: "all 0.3s ease",
+      background: scrolled ? "var(--nav-bg)" : "transparent",
+      backdropFilter: scrolled ? "blur(18px)" : "none",
+      WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
+      borderBottom: scrolled ? "1px solid var(--border)" : "none",
+      boxShadow: scrolled ? "0 2px 32px rgba(0,0,0,0.18)" : "none",
+    }}>
+      {/* Main bar */}
+      <div style={{
+        maxWidth: 1152, margin: "0 auto",
+        padding: "0 1.25rem", height: 64,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+      }}>
 
         {/* Logo */}
-        <button
-          onClick={() => handleNav("Home")}
-          className="flex items-center gap-2 group"
-        >
-          {/* Icon mark */}
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black text-white"
-            style={{ background: "linear-gradient(135deg, var(--purple), var(--cyan))" }}
-          >
-            M
-          </div>
-          <span className="text-lg font-bold" style={{ color: "var(--t1)" }}>
+        <button onClick={() => handleNav("Home")} style={{
+          display: "flex", alignItems: "center", gap: "0.5rem",
+          background: "none", border: "none", cursor: "pointer", padding: 0,
+        }}>
+          <div style={{
+            width: 34, height: 34, borderRadius: 10,
+            background: "linear-gradient(135deg, var(--purple), var(--cyan))",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: "#fff", fontWeight: 900, fontSize: "0.9rem",
+            boxShadow: "0 2px 12px rgba(139,92,246,0.4)",
+          }}>M</div>
+          <span style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--t1)" }}>
             ichael<span style={{ color: "var(--purple)" }}>.</span>
           </span>
         </button>
 
         {/* Desktop pill nav */}
-        <div
-          className="hidden md:flex items-center gap-1 rounded-full px-2 py-1.5"
-          style={{ background: "var(--bg-card)", border: "1px solid var(--border)" }}
+        <div style={{
+          display: "flex", alignItems: "center", gap: 4,
+          background: "var(--bg-card)", border: "1px solid var(--border)",
+          borderRadius: 999, padding: "6px 8px",
+        }}
+          className="hide-mobile"
         >
-          {links.map((l) => {
+          {links.map(l => {
             const isActive = active === l;
             return (
-              <button
-                key={l}
-                onClick={() => handleNav(l)}
-                className="relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200"
-                style={{
-                  color: isActive ? "#fff" : "var(--t2)",
-                  background: isActive
-                    ? "linear-gradient(135deg, var(--purple), var(--cyan))"
-                    : "transparent",
-                  boxShadow: isActive ? "0 2px 12px rgba(139,92,246,0.4)" : "none",
-                }}
-              >
-                {l}
-                {/* underline dot for non-active hover */}
-                {!isActive && (
-                  <span
-                    className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 h-0.5 rounded-full transition-all duration-200 group-hover:w-4"
-                    style={{ background: "var(--purple)" }}
-                  />
-                )}
-              </button>
+              <button key={l} onClick={() => handleNav(l)} style={{
+                padding: "6px 16px", borderRadius: 999, fontSize: "0.875rem", fontWeight: 600,
+                border: "none", cursor: "pointer", transition: "all 0.2s",
+                color: isActive ? "#fff" : "var(--t2)",
+                background: isActive ? "linear-gradient(135deg, var(--purple), var(--cyan))" : "transparent",
+                boxShadow: isActive ? "0 2px 14px rgba(139,92,246,0.45)" : "none",
+              }}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = "var(--purple)"; }}
+                onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = "var(--t2)"; }}
+              >{l}</button>
             );
           })}
         </div>
 
-        {/* Right side: theme toggle + hamburger */}
-        <div className="flex items-center gap-2">
+        {/* Right: theme toggle + hamburger */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           {/* Theme toggle */}
-          <button
-            onClick={handleToggle}
-            aria-label="Toggle theme"
-            title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 ${popping ? "animate-theme-pop" : ""}`}
-            style={{
-              background: "var(--bg-card)",
-              border: "1px solid var(--border-hi)",
-            }}
+          <button onClick={toggle} aria-label="Toggle theme" style={{
+            width: 40, height: 40, borderRadius: "50%", border: "1px solid var(--border-hi)",
+            background: "var(--bg-card)", cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "transform 0.2s",
+          }}
+            onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.12)")}
+            onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
           >
             {theme === "dark"
-              ? <Sun size={15} style={{ color: "#fbbf24" }} />
-              : <Moon size={15} style={{ color: "var(--purple)" }} />
+              ? <Sun size={15} color="#fbbf24" />
+              : <Moon size={15} color="var(--purple)" />
             }
           </button>
 
           {/* Mobile hamburger */}
-          <button
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
-            style={{ background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--t2)" }}
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+          <button onClick={() => setOpen(!open)} aria-label="Toggle menu" style={{
+            width: 40, height: 40, borderRadius: "50%",
+            background: "var(--bg-card)", border: "1px solid var(--border)",
+            cursor: "pointer", display: "none", alignItems: "center", justifyContent: "center",
+            color: "var(--t2)",
+          }}
+            className="show-mobile"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -136,34 +122,47 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div
-          className="md:hidden mx-3 mb-3 rounded-2xl overflow-hidden"
-          style={{ background: "var(--nav-bg)", border: "1px solid var(--border)", backdropFilter: "blur(16px)" }}
-        >
-          {links.map((l) => {
+        <div style={{
+          margin: "0 12px 12px", borderRadius: 20, overflow: "hidden",
+          background: "var(--nav-bg)", border: "1px solid var(--border)",
+          backdropFilter: "blur(18px)", WebkitBackdropFilter: "blur(18px)",
+        }}>
+          {links.map((l, i) => {
             const isActive = active === l;
             return (
-              <button
-                key={l}
-                onClick={() => handleNav(l)}
-                className="w-full text-left px-5 py-3.5 text-sm font-medium flex items-center gap-3 transition-colors duration-150"
-                style={{
-                  color: isActive ? "var(--purple)" : "var(--t2)",
-                  background: isActive ? "var(--bg-card)" : "transparent",
-                  borderBottom: "1px solid var(--border)",
-                }}
-              >
-                {/* Active dot */}
-                <span
-                  className="w-1.5 h-1.5 rounded-full shrink-0"
-                  style={{ background: isActive ? "var(--purple)" : "transparent", border: isActive ? "none" : "1px solid var(--t3)" }}
-                />
+              <button key={l} onClick={() => handleNav(l)} style={{
+                width: "100%", textAlign: "left", padding: "14px 20px",
+                fontSize: "0.9rem", fontWeight: 600, border: "none", cursor: "pointer",
+                display: "flex", alignItems: "center", gap: 12,
+                color: isActive ? "var(--purple)" : "var(--t2)",
+                background: isActive ? "rgba(139,92,246,0.08)" : "transparent",
+                borderBottom: i < links.length - 1 ? "1px solid var(--border)" : "none",
+                transition: "background 0.15s",
+              }}>
+                <span style={{
+                  width: 8, height: 8, borderRadius: "50%", flexShrink: 0,
+                  background: isActive ? "var(--purple)" : "transparent",
+                  border: isActive ? "none" : "1.5px solid var(--t3)",
+                  boxShadow: isActive ? "0 0 6px var(--purple)" : "none",
+                }} />
                 {l}
+                {isActive && <span style={{ marginLeft: "auto", fontSize: "0.65rem", color: "var(--purple)", fontWeight: 700, letterSpacing: "0.05em" }}>●</span>}
               </button>
             );
           })}
         </div>
       )}
+
+      <style>{`
+        @media (min-width: 768px) {
+          .hide-mobile { display: flex !important; }
+          .show-mobile { display: none !important; }
+        }
+        @media (max-width: 767px) {
+          .hide-mobile { display: none !important; }
+          .show-mobile { display: flex !important; }
+        }
+      `}</style>
     </nav>
   );
 }

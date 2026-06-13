@@ -1,33 +1,29 @@
+"use client";
 import { GitFork, Link, Mail, Heart } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-800/50 py-10 px-4">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="text-center sm:text-left">
-          <span className="text-lg font-bold gradient-text">Michael Abayneh</span>
-          <p className="text-gray-500 text-xs mt-1">Software Engineer · Designer · Leader</p>
+    <footer style={{ borderTop:"1px solid var(--border)", padding:"2.5rem 1rem" }}>
+      <div style={{ maxWidth:1152, margin:"0 auto", display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"space-between", gap:"1rem" }}>
+        <div>
+          <span className="gradient-text" style={{ fontSize:"1.125rem", fontWeight:800 }}>Michael Abayneh</span>
+          <p style={{ color:"var(--t3)", fontSize:"0.75rem", marginTop:"0.25rem" }}>Software Engineer · Designer · Leader</p>
         </div>
-
-        <div className="flex gap-4">
+        <div style={{ display:"flex", gap:"1rem" }}>
           {[
-            { icon: <GitFork size={18} />, href: "https://github.com", label: "GitHub" },
-            { icon: <Link size={18} />, href: "https://linkedin.com", label: "LinkedIn" },
-            { icon: <Mail size={18} />, href: "mailto:abaynehbirhan29@gmail.com", label: "Email" },
-          ].map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              aria-label={s.label}
-              className="text-gray-500 hover:text-purple-400 transition-colors"
-            >
-              {s.icon}
-            </a>
+            { icon:<GitFork size={17}/>, href:"https://github.com",                     label:"GitHub" },
+            { icon:<Link size={17}/>,    href:"https://linkedin.com",                   label:"LinkedIn" },
+            { icon:<Mail size={17}/>,    href:"mailto:abaynehbirhan29@gmail.com",        label:"Email" },
+          ].map(s => (
+            <a key={s.label} href={s.href} aria-label={s.label}
+              style={{ color:"var(--t3)", transition:"color 0.2s", textDecoration:"none" }}
+              onMouseEnter={e=>(e.currentTarget.style.color="var(--purple)")}
+              onMouseLeave={e=>(e.currentTarget.style.color="var(--t3)")}
+            >{s.icon}</a>
           ))}
         </div>
-
-        <p className="text-gray-600 text-xs flex items-center gap-1">
-          Made with <Heart size={12} className="text-pink-500" /> by Michael Abayneh
+        <p style={{ color:"var(--t3)", fontSize:"0.75rem", display:"flex", alignItems:"center", gap:"0.25rem" }}>
+          Made with <Heart size={11} color="#f472b6" /> by Michael Abayneh
         </p>
       </div>
     </footer>

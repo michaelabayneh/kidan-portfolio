@@ -1,65 +1,45 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-/* Animated canvas particles */
 function ParticleCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
-
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     let W = (canvas.width = window.innerWidth);
     let H = (canvas.height = window.innerHeight);
-
-    const onResize = () => {
+    window.addEventListener("resize", () => {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
-    };
-    window.addEventListener("resize", onResize);
-
-    const COLORS = ["#8b5cf6", "#06b6d4", "#f472b6", "#a78bfa"];
-    const particles = Array.from({ length: 60 }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 1.8 + 0.4,
-      dx: (Math.random() - 0.5) * 0.4,
-      dy: (Math.random() - 0.5) * 0.4,
+    });
+    const COLORS = ["#8b5cf6","#06b6d4","#f472b6","#a78bfa","#c084fc"];
+    const pts = Array.from({ length: 70 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.5 + 0.3,
+      dx: (Math.random() - 0.5) * 0.35, dy: (Math.random() - 0.5) * 0.35,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      alpha: Math.random() * 0.5 + 0.1,
+      alpha: Math.random() * 0.6 + 0.15,
     }));
-
     let raf: number;
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
-      for (const p of particles) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
+      for (const p of pts) {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color; ctx.globalAlpha = p.alpha; ctx.fill();
+        p.x += p.dx; p.y += p.dy;
         if (p.x < 0 || p.x > W) p.dx *= -1;
         if (p.y < 0 || p.y > H) p.dy *= -1;
       }
-      // Draw connecting lines
-      ctx.globalAlpha = 1;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = "#8b5cf6";
-            ctx.globalAlpha = (1 - dist / 120) * 0.12;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 130) {
+            ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = "#8b5cf6"; ctx.globalAlpha = (1 - d / 130) * 0.1;
+            ctx.lineWidth = 0.5; ctx.stroke();
           }
         }
       }
@@ -67,122 +47,64 @@ function ParticleCanvas() {
       raf = requestAnimationFrame(draw);
     };
     draw();
-
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
-    };
+    return () => cancelAnimationFrame(raf);
   }, []);
-
-  return <canvas ref={ref} className="fixed inset-0 pointer-events-none z-0" style={{ opacity: "var(--particle-opacity)" }} />;
+  return <canvas ref={ref} className="fixed inset-0 pointer-events-none z-0" style={{ opacity: "var(--p-op)" }} />;
 }
 
 export default function Background() {
   return (
     <>
-      {/* Particle network canvas */}
       <ParticleCanvas />
 
-      {/* Fixed mesh gradient blobs */}
+      {/* Aurora blobs */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Top-left purple blob */}
-        <div
-          className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full transition-all duration-700"
-          style={{ background: "radial-gradient(circle, var(--blob1) 0%, transparent 70%)", animation: "float 12s ease-in-out infinite" }}
-        />
-        {/* Top-right cyan blob */}
-        <div
-          className="absolute -top-20 -right-40 w-[500px] h-[500px] rounded-full transition-all duration-700"
-          style={{ background: "radial-gradient(circle, var(--blob2) 0%, transparent 70%)", animation: "float 15s ease-in-out infinite reverse" }}
-        />
-        {/* Center pink blob */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full transition-all duration-700"
-          style={{ background: "radial-gradient(ellipse, var(--blob3) 0%, transparent 70%)", animation: "float-slow 18s ease-in-out infinite" }}
-        />
-        {/* Bottom-left teal blob */}
-        <div
-          className="absolute -bottom-40 -left-20 w-[500px] h-[500px] rounded-full transition-all duration-700"
-          style={{ background: "radial-gradient(circle, var(--blob2) 0%, transparent 70%)", animation: "float 10s ease-in-out infinite 3s" }}
-        />
-        {/* Bottom-right violet blob */}
-        <div
-          className="absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full transition-all duration-700"
-          style={{ background: "radial-gradient(circle, var(--blob1) 0%, transparent 70%)", animation: "float 14s ease-in-out infinite reverse 5s" }}
-        />
+        <div style={{ position:"absolute", top:"-15%", left:"-10%", width:"55vw", height:"55vw", borderRadius:"50%", background:"radial-gradient(circle, rgba(109,40,217,0.3) 0%, transparent 65%)", filter:"blur(60px)", animation:"aurora 18s ease-in-out infinite" }} />
+        <div style={{ position:"absolute", top:"-8%", right:"-18%", width:"50vw", height:"50vw", borderRadius:"50%", background:"radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 65%)", filter:"blur(70px)", animation:"aurora 24s ease-in-out infinite reverse" }} />
+        <div style={{ position:"absolute", top:"35%", left:"20%", width:"50vw", height:"38vw", borderRadius:"50%", background:"radial-gradient(ellipse, rgba(219,39,119,0.10) 0%, transparent 65%)", filter:"blur(80px)", animation:"aurora 30s ease-in-out infinite reverse 4s" }} />
+        <div style={{ position:"absolute", bottom:"-18%", left:"5%", width:"50vw", height:"50vw", borderRadius:"50%", background:"radial-gradient(circle, rgba(124,58,237,0.25) 0%, transparent 65%)", filter:"blur(60px)", animation:"aurora 22s ease-in-out infinite 6s" }} />
+        <div style={{ position:"absolute", bottom:"-12%", right:"-8%", width:"40vw", height:"40vw", borderRadius:"50%", background:"radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 65%)", filter:"blur(70px)", animation:"aurora 26s ease-in-out infinite 9s" }} />
       </div>
 
-      {/* Grid overlay */}
-      <div className="fixed inset-0 bg-grid pointer-events-none z-0 opacity-100" />
+      {/* Grid */}
+      <div className="fixed inset-0 bg-grid pointer-events-none z-0" />
 
-      {/* Floating geometric shapes */}
+      {/* Geometric decorations */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Spinning outer ring - top right */}
-        <div
-          className="absolute top-20 right-16 w-40 h-40 rounded-full border border-purple-500/20 animate-spin-slow"
-        />
-        <div
-          className="absolute top-20 right-16 w-28 h-28 m-6 rounded-full border border-cyan-500/15 animate-spin-rev"
-        />
-
-        {/* Diamond shape - bottom left */}
-        <div
-          className="absolute bottom-32 left-16 w-16 h-16 border border-pink-500/25 rotate-45 animate-float-slow"
-          style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="absolute bottom-36 left-20 w-8 h-8 border border-purple-400/30 rotate-45 animate-float-slow"
-          style={{ animationDelay: "1s" }}
-        />
-
-        {/* Triangle-like shape - top left */}
-        <svg
-          className="absolute top-40 left-10 opacity-10 animate-float-slow"
-          style={{ animationDelay: "4s" }}
-          width="80" height="80" viewBox="0 0 80 80"
-        >
-          <polygon points="40,5 75,70 5,70" fill="none" stroke="#8b5cf6" strokeWidth="1.5" />
-        </svg>
-
-        {/* Cross / plus - mid right */}
-        <svg
-          className="absolute top-1/2 right-8 opacity-10 animate-float"
-          style={{ animationDelay: "3s" }}
-          width="40" height="40" viewBox="0 0 40 40"
-        >
-          <line x1="20" y1="0" x2="20" y2="40" stroke="#06b6d4" strokeWidth="1.5" />
-          <line x1="0" y1="20" x2="40" y2="20" stroke="#06b6d4" strokeWidth="1.5" />
-        </svg>
-
-        {/* Hexagon - mid left */}
-        <svg
-          className="absolute top-2/3 left-8 opacity-10 animate-float-slow"
-          style={{ animationDelay: "6s" }}
-          width="60" height="60" viewBox="0 0 60 60"
-        >
-          <polygon points="30,2 55,16 55,44 30,58 5,44 5,16" fill="none" stroke="#f472b6" strokeWidth="1.5" />
-        </svg>
-
-        {/* Scattered dots */}
-        {[
-          { top: "15%", left: "8%", color: "#8b5cf6", delay: "0s" },
-          { top: "35%", right: "5%", color: "#06b6d4", delay: "1.5s" },
-          { top: "65%", left: "12%", color: "#f472b6", delay: "3s" },
-          { top: "80%", right: "10%", color: "#a78bfa", delay: "4.5s" },
-          { top: "50%", left: "3%", color: "#06b6d4", delay: "2s" },
-        ].map((d, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full"
-            style={{
-              ...d,
-              background: d.color,
-              boxShadow: `0 0 8px ${d.color}`,
-              animation: `twinkle ${3 + i}s ease-in-out infinite`,
-              animationDelay: d.delay,
-            }}
-          />
+        {[180,130,85,45].map((s,i) => (
+          <div key={i} style={{ position:"absolute", top:"3rem", right:"2rem", width:s, height:s, marginTop:(180-s)/2, marginRight:(180-s)/2, borderRadius:"50%", border:`1px solid rgba(139,92,246,${0.06+i*0.05})`, animation:`${i%2===0?"spin-slow":"spin-reverse"} ${20+i*5}s linear infinite` }} />
         ))}
+        {[56,36,18].map((s,i) => (
+          <div key={i} style={{ position:"absolute", bottom:`${7+i*3}rem`, left:`${2.5+i*1.2}rem`, width:s, height:s, border:`1px solid rgba(244,114,182,${0.12+i*0.1})`, transform:"rotate(45deg)", animation:`float-slow ${9+i*2}s ease-in-out infinite`, animationDelay:`${i*1.5}s` }} />
+        ))}
+        <svg className="absolute" style={{ top:"9rem", left:"1.5rem", opacity:0.08, animation:"float-slow 12s ease-in-out infinite", animationDelay:"3s" }} width="70" height="70" viewBox="0 0 70 70">
+          <polygon points="35,3 67,62 3,62" fill="none" stroke="#8b5cf6" strokeWidth="1.5"/>
+        </svg>
+        <svg className="absolute" style={{ top:"55%", right:"1.5rem", opacity:0.08, animation:"float 10s ease-in-out infinite", animationDelay:"2s" }} width="36" height="36" viewBox="0 0 36 36">
+          <line x1="18" y1="0" x2="18" y2="36" stroke="#06b6d4" strokeWidth="1.5"/>
+          <line x1="0" y1="18" x2="36" y2="18" stroke="#06b6d4" strokeWidth="1.5"/>
+        </svg>
+        <svg className="absolute" style={{ top:"65%", left:"1.5rem", opacity:0.08, animation:"float-slow 14s ease-in-out infinite", animationDelay:"5s" }} width="54" height="54" viewBox="0 0 54 54">
+          <polygon points="27,2 50,14 50,40 27,52 4,40 4,14" fill="none" stroke="#f472b6" strokeWidth="1.5"/>
+        </svg>
+        {[
+          { top:"10%",  left:"5%",   color:"#8b5cf6", d:"0s",   s:4 },
+          { top:"25%",  right:"4%",  color:"#06b6d4", d:"1.5s", s:3 },
+          { top:"45%",  left:"2%",   color:"#f472b6", d:"3s",   s:5 },
+          { top:"70%",  right:"7%",  color:"#a78bfa", d:"2s",   s:3 },
+          { top:"85%",  left:"8%",   color:"#06b6d4", d:"4s",   s:4 },
+          { top:"18%",  right:"11%", color:"#c084fc", d:"0.8s", s:3 },
+        ].map((d,i) => (
+          <div key={i} style={{ position:"absolute", top:d.top, [d.left?"left":"right"]:d.left||d.right, width:d.s, height:d.s, borderRadius:"50%", background:d.color, boxShadow:`0 0 ${d.s*3}px ${d.color}`, animation:`twinkle ${3.5+i*0.6}s ease-in-out infinite`, animationDelay:d.d }} />
+        ))}
+      </div>
+
+      {/* Wave bottom */}
+      <div className="fixed bottom-0 left-0 w-full pointer-events-none z-0 overflow-hidden" style={{ height:100 }}>
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ width:"200%", height:"100%", animation:"wave-x 20s linear infinite" }}>
+          <path d="M0,50 C180,90 360,10 540,50 C720,90 900,10 1080,50 C1260,90 1440,10 1440,50 L1440,100 L0,100 Z" fill="rgba(139,92,246,0.04)"/>
+          <path d="M0,70 C200,30 400,100 600,70 C800,40 1000,100 1200,70 C1350,50 1440,80 1440,70 L1440,100 L0,100 Z" fill="rgba(6,182,212,0.03)"/>
+        </svg>
       </div>
     </>
   );

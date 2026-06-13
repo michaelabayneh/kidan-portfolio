@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { GitFork, Link, Mail, ChevronDown } from "lucide-react";
+import { Mail, ChevronDown, Download, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 const roles = [
@@ -21,15 +21,15 @@ export default function Hero() {
     let timeout: ReturnType<typeof setTimeout>;
     if (typing) {
       if (displayed.length < current.length) {
-        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80);
+        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 75);
       } else {
-        timeout = setTimeout(() => setTyping(false), 2000);
+        timeout = setTimeout(() => setTyping(false), 2200);
       }
     } else {
       if (displayed.length > 0) {
-        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40);
+        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
       } else {
-        setRoleIdx((i) => (i + 1) % roles.length);
+        setRoleIdx(i => (i + 1) % roles.length);
         setTyping(true);
       }
     }
@@ -37,112 +37,154 @@ export default function Hero() {
   }, [displayed, typing, roleIdx]);
 
   return (
-    <section
-      id="home"
-      /* pt-16 pushes content below the fixed 64px navbar — no overlap */
-      className="min-h-screen pt-16 flex flex-col items-center justify-center relative overflow-hidden px-4"
-    >
-      {/* Decorative rings */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-10"
-          style={{ background: "conic-gradient(from 0deg,#8b5cf6,#06b6d4,#f472b6,transparent,#8b5cf6)", animation: "spin-slow 25s linear infinite" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-20"
-          style={{ border: "1px solid var(--purple)", animation: "spin-reverse 18s linear infinite" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[62%] w-64 h-64 rounded-full opacity-25"
-          style={{ background: "radial-gradient(circle,var(--purple) 0%,transparent 70%)", filter: "blur(40px)" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[62%] w-40 h-40 rounded-full opacity-15"
-          style={{ background: "radial-gradient(circle,var(--cyan) 0%,transparent 70%)", filter: "blur(30px)" }}
-        />
-      </div>
+    <section id="home" style={{
+      minHeight: "100vh",
+      paddingTop: 80,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
+      overflow: "hidden",
+      padding: "80px 1.5rem 2rem",
+    }}>
+      {/* Soft glow behind avatar only */}
+      <div style={{
+        position: "absolute", top: "15%", left: "50%",
+        transform: "translateX(-50%)",
+        width: 320, height: 320, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)",
+        filter: "blur(48px)", pointerEvents: "none",
+      }} />
 
-      <div className="relative z-10 text-center max-w-3xl w-full">
+      <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 720, width: "100%" }}>
+
         {/* Avatar */}
-        <div className="mx-auto mb-8 w-36 h-36 rounded-full p-[3px] animate-pulse-glow"
-          style={{ background: "linear-gradient(135deg,var(--purple),var(--cyan))" }}>
-          <div className="w-full h-full rounded-full overflow-hidden relative">
-            <Image src="/profile.jpg" alt="Michael Abayneh" fill className="object-cover object-top" priority />
+        <div style={{
+          margin: "0 auto 1.75rem",
+          width: 148, height: 148,
+          borderRadius: "50%",
+          padding: 3,
+          background: "linear-gradient(135deg, #8b5cf6, #06b6d4)",
+          boxShadow: "0 0 32px rgba(139,92,246,0.5), 0 0 60px rgba(6,182,212,0.2)",
+          animation: "pulse-glow 3s ease-in-out infinite",
+        }}>
+          <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
+            <Image src="/profile.jpg" alt="Michael Abayneh" fill style={{ objectFit: "cover", objectPosition: "top" }} priority />
           </div>
         </div>
 
-        <p className="text-sm font-medium tracking-widest uppercase mb-3" style={{ color: "var(--purple)" }}>
-          Welcome to my portfolio
-        </p>
+        {/* Badge */}
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: "0.5rem",
+          background: "rgba(139,92,246,0.12)", border: "1px solid rgba(139,92,246,0.35)",
+          borderRadius: 999, padding: "0.35rem 1rem", marginBottom: "1.25rem",
+        }}>
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e", display: "inline-block", animation: "pulse-glow 2s ease-in-out infinite" }} />
+          <span style={{ fontSize: "0.78rem", color: "var(--purple)", fontWeight: 600, letterSpacing: "0.05em" }}>Available for opportunities</span>
+        </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight" style={{ color: "var(--t1)" }}>
-          Hi, I&apos;m <span className="gradient-text">Michael Abayneh</span>
+        {/* Name */}
+        <h1 style={{ fontSize: "clamp(2.2rem, 6vw, 4rem)", fontWeight: 900, lineHeight: 1.1, color: "var(--t1)", marginBottom: "0.75rem" }}>
+          Hi, I&apos;m{" "}
+          <span className="gradient-text">Michael Abayneh</span>
         </h1>
 
         {/* Typewriter */}
-        <div className="h-10 mb-6 flex items-center justify-center">
-          <span className="text-lg sm:text-xl font-medium" style={{ color: "var(--cyan)" }}>
-            {displayed}<span className="animate-pulse">|</span>
+        <div style={{ height: 40, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
+          <span style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", color: "var(--cyan)", fontWeight: 600 }}>
+            {displayed}
+            <span style={{ animation: "pulse-glow 1s step-end infinite", opacity: 0.8 }}>|</span>
           </span>
         </div>
 
-        <p className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: "var(--t2)" }}>
-          5th Year Software Engineering Student &amp; Student Union General Service Affairs. Passionate about building
-          digital experiences and leading communities.
+        {/* Description */}
+        <p style={{ fontSize: "clamp(0.9rem, 2vw, 1.05rem)", color: "var(--t2)", lineHeight: 1.75, maxWidth: 560, margin: "0 auto 2.5rem" }}>
+          5th Year Software Engineering Student &amp; Student Union General Service Affairs.
+          Passionate about building digital experiences and leading communities.
         </p>
 
-        {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 flex-wrap">
+        {/* CTA Buttons */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.875rem", justifyContent: "center", marginBottom: "2.5rem" }}>
           <button
             onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-3 rounded-full text-white font-semibold hover:opacity-90 transition-all duration-200 hover:scale-105 shadow-lg"
-            style={{ background: "linear-gradient(135deg,var(--purple),var(--cyan))", boxShadow: "0 4px 24px rgba(139,92,246,0.4)" }}
+            style={{
+              display: "flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.8rem 1.75rem", borderRadius: 999,
+              background: "linear-gradient(135deg, #8b5cf6, #06b6d4)",
+              color: "#fff", fontWeight: 700, border: "none", cursor: "pointer",
+              fontSize: "0.9rem", boxShadow: "0 4px 24px rgba(139,92,246,0.45)",
+              transition: "transform 0.2s, opacity 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)")}
+            onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
           >
-            View My Work
+            View My Work <ArrowRight size={16} />
           </button>
+
           <a
-            href="/cv.pdf"
-            download
-            className="px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:scale-105 flex items-center justify-center gap-2"
-            style={{ border: "1px solid var(--purple)", color: "var(--purple)", background: "var(--bg-card)" }}
+            href="/cv.pdf" download
+            style={{
+              display: "flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.8rem 1.75rem", borderRadius: 999,
+              background: "var(--bg-card)", border: "1px solid var(--border-hi)",
+              color: "var(--purple)", fontWeight: 700, cursor: "pointer",
+              fontSize: "0.9rem", textDecoration: "none",
+              transition: "transform 0.2s, background 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)", e.currentTarget.style.background = "rgba(139,92,246,0.12)")}
+            onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)", e.currentTarget.style.background = "var(--bg-card)")}
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download CV
+            <Download size={15} /> Download CV
           </a>
+
           <button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:scale-105"
-            style={{ border: "1px solid var(--border-hi)", color: "var(--t2)", background: "var(--bg-card)" }}
+            style={{
+              display: "flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.8rem 1.75rem", borderRadius: 999,
+              background: "transparent", border: "1px solid var(--border)",
+              color: "var(--t2)", fontWeight: 600, cursor: "pointer",
+              fontSize: "0.9rem", transition: "transform 0.2s, border-color 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)", e.currentTarget.style.borderColor = "var(--border-hi)")}
+            onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)", e.currentTarget.style.borderColor = "var(--border)")}
           >
             Contact Me
           </button>
         </div>
 
-        {/* Social links */}
-        <div className="flex gap-4 justify-center">
+        {/* Social row */}
+        <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center" }}>
           {[
-            { icon: <GitFork size={18} />, href: "https://github.com", label: "GitHub" },
-            { icon: <Link size={18} />, href: "https://linkedin.com", label: "LinkedIn" },
-            { icon: <Mail size={18} />, href: "mailto:abaynehbirhan29@gmail.com", label: "Email" },
-          ].map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              aria-label={s.label}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-              style={{ background: "var(--bg-card)", border: "1px solid var(--border)", color: "var(--t3)" }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--purple)", e.currentTarget.style.color = "var(--purple)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)", e.currentTarget.style.color = "var(--t3)")}
-            >
-              {s.icon}
-            </a>
+            { label: "GitHub",   href: "https://github.com/michaelabayneh", icon: "GH" },
+            { label: "LinkedIn", href: "https://linkedin.com",               icon: "in" },
+            { label: "Email",    href: "mailto:abaynehbirhan29@gmail.com",   icon: <Mail size={16}/> },
+            { label: "Telegram", href: "https://t.me/Nove24",                icon: "TG" },
+          ].map(s => (
+            <a key={s.label} href={s.href} aria-label={s.label}
+              target={s.href.startsWith("http") ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              style={{
+                width: 42, height: 42, borderRadius: "50%",
+                background: "var(--bg-card)", border: "1px solid var(--border)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "var(--t3)", fontSize: "0.65rem", fontWeight: 700,
+                textDecoration: "none", transition: "all 0.2s",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--purple)", e.currentTarget.style.color = "var(--purple)", e.currentTarget.style.transform = "translateY(-3px)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)", e.currentTarget.style.color = "var(--t3)", e.currentTarget.style.transform = "translateY(0)")}
+            >{s.icon}</a>
           ))}
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" style={{ color: "var(--t3)" }}>
-        <ChevronDown size={26} />
+      <div style={{
+        position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)",
+        color: "var(--t3)", animation: "float 2s ease-in-out infinite",
+      }}>
+        <ChevronDown size={24} />
       </div>
     </section>
   );

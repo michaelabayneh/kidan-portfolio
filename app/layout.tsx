@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geist.variable} data-theme="dark">
-      <body className="antialiased">
+    <html lang="en" className={geist.variable} data-theme="dark" style={{ background: "#05050f" }}>
+      <body className="antialiased" style={{ background: "#05050f", color: "#f0f0f5", margin: 0 }}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

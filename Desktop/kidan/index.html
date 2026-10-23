@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Kidanemariam Sisay | BSc Nursing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--p:#0ea5e9;--pd:#0284c7;--ac:#38bdf8;--bg:#0f172a;--bg2:#1e293b;--bg3:#334155;--tx:#f1f5f9;--mu:#94a3b8;--ca:#1e293b;--bo:#334155;--go:#f59e0b;}
+[data-theme="light"]{--bg:#f0f4f8;--bg2:#e8eef5;--bg3:#d1dce8;--tx:#0f172a;--mu:#475569;--ca:#ffffff;--bo:#c8d6e5;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;transition:background .3s,color .3s;}
+
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(15,23,42,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--bo);padding:.7rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+[data-theme="light"] nav{background:rgba(240,244,248,0.96);}
+.logo{font-weight:900;font-size:1.15rem;color:var(--p);letter-spacing:-1px;}
+nav ul{list-style:none;display:flex;gap:1.4rem;}
+nav ul a{color:var(--mu);text-decoration:none;font-size:.83rem;font-weight:500;transition:color .2s;position:relative;padding-bottom:2px;}
+nav ul a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--p);transition:width .2s;}
+nav ul a:hover{color:var(--p);}
+nav ul a:hover::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
+.ibtn{background:var(--bg3);border:1px solid var(--bo);color:var(--tx);border-radius:8px;padding:.35rem .7rem;cursor:pointer;font-size:.78rem;font-weight:600;transition:all .2s;white-space:nowrap;font-family:inherit;}
+.ibtn:hover{border-color:var(--p);color:var(--p);}
+.ham{display:none;background:none;border:none;color:var(--tx);font-size:1.4rem;cursor:pointer;}
+.mob{display:none;flex-direction:column;position:fixed;top:56px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--bo);z-index:199;}
+.mob.open{display:flex;}
+.mob a{color:var(--mu);text-decoration:none;font-size:.95rem;padding:.85rem 1.5rem;border-bottom:1px solid var(--bo);transition:color .2s,background .2s;}
+.mob a:hover{color:var(--p);background:rgba(14,165,233,.06);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;background:radial-gradient(ellipse at 50% -10%,rgba(14,165,233,.18) 0%,transparent 65%);}
+.hero-inner{max-width:780px;}
+.avatar-wrap{display:flex;justify-content:center;margin-bottom:2rem;}
+.avatar{width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--p);box-shadow:0 0 0 6px rgba(14,165,233,.15),0 12px 40px rgba(0,0,0,.5);}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.35);color:var(--ac);padding:.4rem 1.1rem;border-radius:999px;font-size:.83rem;margin-bottom:1.5rem;}
+.hero h1{font-size:clamp(2rem,5.5vw,3.6rem);font-weight:900;line-height:1.1;margin-bottom:1rem;letter-spacing:-1px;}
+.hero h1 .name{background:linear-gradient(135deg,var(--p),var(--ac),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease-in-out infinite;}
+@keyframes shimmer{0%,100%{filter:hue-rotate(0deg);}50%{filter:hue-rotate(30deg);}}
+.hero .sub{font-size:1rem;color:var(--mu);margin-bottom:.5rem;}
+.hero .tag{font-size:.92rem;color:var(--mu);max-width:580px;margin:0 auto 2rem;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn{padding:.75rem 1.75rem;border-radius:9px;font-weight:700;font-size:.93rem;cursor:pointer;text-decoration:none;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:.4rem;font-family:inherit;}
+.btn-p{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;box-shadow:0 4px 20px rgba(14,165,233,.35);}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(14,165,233,.45);}
+.btn-o{background:transparent;color:var(--tx);border:1.5px solid var(--bo);}
+.btn-o:hover{border-color:var(--p);color:var(--p);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">KS</div>
+  <ul class="nav-links">
+    <li><a href="#about" data-en="About" data-am="ስለ እኔ">About</a></li>
+    <li><a href="#academics" data-en="Academics" data-am="ትምህርት">Academics</a></li>
+    <li><a href="#clinical" data-en="Clinical" data-am="ክሊኒካዊ">Clinical</a></li>
+    <li><a href="#skills" data-en="Skills" data-am="ክህሎቶች">Skills</a></li>
+    <li><a href="#credentials" data-en="Credentials" data-am="ማረጋገጫዎች">Credentials</a></li>
+    <li><a href="#leadership" data-en="Leadership" data-am="አመራር">Leadership</a></li>
+    <li><a href="#documents" data-en="Documents" data-am="ሰነዶች">Documents</a></li>
+    <li><a href="#contact" data-en="Contact" data-am="አግኙኝ">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="ibtn" id="themeBtn" onclick="toggleTheme()">🌙 Dark</button>
+    <button class="ibtn" id="langBtn" onclick="toggleLang()">አማርኛ</button>
+    <button class="ham" onclick="toggleMob()">☰</button>
+  </div>
+</nav>
+<div class="mob" id="mob">
+  <a href="#about" onclick="closeMob()" data-en="About" data-am="ስለ እኔ">About</a>
+  <a href="#academics" onclick="closeMob()" data-en="Academics" data-am="ትምህርት">Academics</a>
+  <a href="#clinical" onclick="closeMob()" data-en="Clinical" data-am="ክሊኒካዊ">Clinical</a>
+  <a href="#skills" onclick="closeMob()" data-en="Skills" data-am="ክህሎቶች">Skills</a>
+  <a href="#credentials" onclick="closeMob()" data-en="Credentials" data-am="ማረጋገጫዎች">Credentials</a>
+  <a href="#leadership" onclick="closeMob()" data-en="Leadership" data-am="አመራር">Leadership</a>
+  <a href="#documents" onclick="closeMob()" data-en="Documents" data-am="ሰነዶች">Documents</a>
+  <a href="#contact" onclick="closeMob()" data-en="Contact" data-am="አግኙኝ">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="avatar-wrap"><img src="kidane-photo.jpg" alt="Kidanemariam Sisay" class="avatar"/></div>
+    <div class="hero-badge">🩺 <span data-en="BSc Nursing · Class of 2026" data-am="የ간护ሳይንስ ምሩቅ · 2026">BSc Nursing · Class of 2026</span></div>
+    <h1><span data-en="Hello, I am" data-am="ሰላም፣ እኔ ነኝ">Hello, I am</span><br/><span class="name">Kidanemariam Sisay</span></h1>
+    <p class="sub" data-en="BSc Nursing Graduate · Woldia University · Class of 2026" data-am="የBSc ነርሲንግ ምሩቅ · ወልዲያ ዩኒቨርሲቲ · 2026">BSc Nursing Graduate · Woldia University · Class of 2026</p>
+    <p class="tag" data-en="Passionate about patient-centered care, evidence-based practice, and making a meaningful difference in healthcare across Ethiopia and beyond." data-am="ለሕሙማን ተኮር እንክብካቤ፣ ማስረጃ ላይ የተመሠረተ ልምምድ እና በጤና አገልግሎት ላይ ለውጥ ለማምጣት ቁርጠኛ ነኝ።">Passionate about patient-centered care, evidence-based practice, and making a meaningful difference in healthcare across Ethiopia and beyond.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-p" data-en="Get In Touch" data-am="ያግኙኝ">Get In Touch</a>
+      <a href="Kidane-CV-Resume.pdf" download="Kidanemariam-Sisay-CV-Resume.pdf" class="btn btn-o" data-en=" Download CV" data-am="ሲቪ አውርድ"> Download CV</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* SECTIONS */
+section{padding:5rem 1.5rem;}
+.con{max-width:980px;margin:0 auto;}
+.st{font-size:1.75rem;font-weight:800;margin-bottom:.4rem;letter-spacing:-.5px;}
+.st span{color:var(--p);}
+.ss{color:var(--mu);margin-bottom:3rem;font-size:.93rem;}
+.alt{background:var(--bg2);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.about-text p{color:var(--mu);margin-bottom:1rem;line-height:1.85;}
+blockquote{border-left:3px solid var(--p);padding-left:1rem;color:var(--ac);font-style:italic;margin:1.5rem 0;font-size:.95rem;line-height:1.7;}
+.opento{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.25rem;}
+.opento span{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.28);color:#86efac;padding:.32rem .9rem;border-radius:999px;font-size:.8rem;font-weight:500;}
+
+/* STAT CARDS */
+.stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;}
+.stat-card{background:var(--ca);border:1px solid var(--bo);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--p),var(--ac));}
+.stat-card:hover{border-color:var(--p);transform:translateY(-3px);}
+.stat-card .s-icon{font-size:1.6rem;margin-bottom:.5rem;}
+.stat-card .s-val{font-size:1.9rem;font-weight:900;color:var(--p);line-height:1;}
+.stat-card .s-lbl{font-size:.75rem;color:var(--mu);margin-top:.35rem;font-weight:500;}
+
+/* HIGHLIGHT CARDS */
+.hcards{display:flex;flex-direction:column;gap:.9rem;}
+.hcard{background:var(--ca);border:1px solid var(--bo);border-radius:12px;padding:1.1rem 1.25rem;display:flex;gap:.9rem;align-items:flex-start;transition:border-color .2s,transform .2s;}
+.hcard:hover{border-color:var(--p);transform:translateX(4px);}
+.hcard .ic{font-size:1.4rem;flex-shrink:0;margin-top:.1rem;}
+.hcard h4{font-weight:700;font-size:.9rem;margin-bottom:.18rem;}
+.hcard p{font-size:.8rem;color:var(--mu);}
+</style>
+
+<section id="about">
+<div class="con">
+  <p class="st" data-en="About <span>Me</span>" data-am="ስለ <span>እኔ</span>">About <span>Me</span></p>
+  <p class="ss" data-en="Who I am and what drives me" data-am="ማን እንደሆንኩ እና ምን እንደሚያነሳሳኝ">Who I am and what drives me</p>
+  <div class="about-grid">
+    <div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="s-icon">🎓</div>
+          <div class="s-val">3.78</div>
+          <div class="s-lbl" data-en="CGPA · Woldia University" data-am="ክብደቱ ፍሬ ነጥብ">CGPA · Woldia University</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-icon">📊</div>
+          <div class="s-val">71%</div>
+          <div class="s-lbl" data-en="Exit Exam Score" data-am="የመዉጪ ፈተና ውጤት">Exit Exam Score</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p data-en="I am a BSc Nursing graduate from Woldia University with a strong clinical and academic foundation, dedicated to delivering high-quality, compassionate patient care. My training has equipped me with hands-on skills across a wide range of clinical settings." data-am="ከወልዲያ ዩኒቨርሲቲ የBSc ነርሲንግ ምሩቅ ሲሆን ጠንካራ ክሊኒካዊ እና አካዳሚያዊ መሠረት ያለኝ ሲሆን ለምረቃዊ ታካሚ እንክብካቤ ቁርጠኛ ነኝ።">I am a BSc Nursing graduate from Woldia University with a strong clinical and academic foundation, dedicated to delivering high-quality, compassionate patient care. My training has equipped me with hands-on skills across a wide range of clinical settings.</p>
+        <p data-en="I am detail-oriented, highly empathetic, and driven by a genuine commitment to improving health outcomes. I thrive in fast-paced environments working effectively in multidisciplinary teams." data-am="ዝርዝር ተኮር፣ ርኅሩኅ እና የጤና ውጤቶችን ለማሻሻል ቁርጠኛ ነኝ። በፈጣን አካባቢዎች እና በብዙ ዲሲፕሊን ቡድኖች ውስጥ ውጤታማ ሆኜ እሠራለሁ።">I am detail-oriented, highly empathetic, and driven by a genuine commitment to improving health outcomes. I thrive in fast-paced environments working effectively in multidisciplinary teams.</p>
+        <blockquote data-en='"My mission is to provide safe, evidence-based, and compassionate care to every patient — and to contribute to a stronger, more accessible healthcare system."' data-am='"ዓላማዬ ለእያንዳንዱ ታካሚ ደህንነቱ የተጠበቀ፣ ማስረጃ ላይ የተመሠረተ እና ርኅሩኅ እንክብካቤ መስጠት ነው።'">"My mission is to provide safe, evidence-based, and compassionate care to every patient — and to contribute to a stronger, more accessible healthcare system."</blockquote>
+        <p style="font-size:.83rem;color:var(--mu);margin-bottom:.6rem;" data-en="Open to opportunities in:" data-am="ለሚከተሉት ዕድሎች ክፍት ነኝ:">Open to opportunities in:</p>
+        <div class="opento">
+          <span data-en="Hospital Nursing" data-am="ሆስፒታል ነርሲንግ">Hospital Nursing</span>
+          <span data-en="Community Health" data-am="ማህበረሰብ ጤና">Community Health</span>
+          <span data-en="MCH / Maternal Care" data-am="MCH / የእናቶች እንክብካቤ">MCH / Maternal Care</span>
+          <span data-en="Emergency & ICU" data-am="ድንገተኛ ክፍል">Emergency &amp; ICU</span>
+          <span data-en="NGO / Health Programs" data-am="ኤንጂኦ / የጤና መርሃ ግብሮች">NGO / Health Programs</span>
+          <span data-en="Public Health" data-am="የህዝብ ጤና">Public Health</span>
+        </div>
+      </div>
+    </div>
+    <div class="hcards">
+      <div class="hcard"><div class="ic">❤️</div><div><h4 data-en="Empathetic Caregiver" data-am="ርኅሩኅ ተንከባካቢ">Empathetic Caregiver</h4><p data-en="Patient-first approach with strong interpersonal and communication skills" data-am="ጠንካራ ግንኙነት ክህሎቶች ያሉት ታካሚ ቀዳሚ አቀራረብ">Patient-first approach with strong interpersonal and communication skills</p></div></div>
+      <div class="hcard"><div class="ic">🔬</div><div><h4 data-en="Evidence-Based Practice" data-am="ማስረጃ ላይ የተመሠረተ ልምምድ">Evidence-Based Practice</h4><p data-en="Clinically trained to apply current research and protocols at the bedside" data-am="የወቅቱ ምርምር እና ፕሮቶኮሎችን ለመተግበር ክሊኒካዊ ስልጠና">Clinically trained to apply current research and protocols at the bedside</p></div></div>
+      <div class="hcard"><div class="ic">🤝</div><div><h4 data-en="Team Player" data-am="የቡድን አባል">Team Player</h4><p data-en="Proven ability to collaborate with physicians, nurses, and support staff" data-am="ሐኪሞች፣ ነርሶች እና ድጋፍ ሰጪ ሠራተኞች ጋር የመሥራት ተረጋግጦ ያለ ችሎታ">Proven ability to collaborate with physicians, nurses, and support staff</p></div></div>
+      <div class="hcard"><div class="ic">📋</div><div><h4 data-en="Detail-Oriented" data-am="ዝርዝር ተኮር">Detail-Oriented</h4><p data-en="Accurate documentation, medication administration, and care planning" data-am="ትክክለኛ ሰነድ ማዘጋጀት፣ መድሃኒት አስተዳደር እና እንክብካቤ እቅድ">Accurate documentation, medication administration, and care planning</p></div></div>
+      <div class="hcard"><div class="ic">🌍</div><div><h4 data-en="Multilingual" data-am="ብዙ ቋንቋ ተናጋሪ">Multilingual</h4><p data-en="Amharic (Native) · English (Professional) · Tigrinya (Fluent)" data-am="አማርኛ (ተወላጅ) · እንግሊዝኛ (ሙያዊ) · ትግሪኛ (ቀለጠፍ)">Amharic (Native) · English (Professional) · Tigrinya (Fluent)</p></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<style>
+/* ACADEMICS */
+.edu-card{background:var(--ca);border:1px solid var(--bo);border-radius:16px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:1rem;}
+.edu-card .deg{color:var(--p);font-weight:700;font-size:1.1rem;}
+.edu-card .sch{font-size:1rem;font-weight:700;margin:.25rem 0;}
+.edu-card .per{color:var(--mu);font-size:.83rem;margin-bottom:1rem;}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+.tag{background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.25);color:var(--ac);padding:.26rem .72rem;border-radius:999px;font-size:.75rem;}
+.badge-bsc{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--go);padding:.7rem 1.2rem;border-radius:10px;font-weight:800;font-size:.9rem;height:fit-content;text-align:center;line-height:1.7;}
+
+/* CLINICAL */
+.exp-list{display:flex;flex-direction:column;gap:1rem;}
+.exp-item{background:var(--ca);border:1px solid var(--bo);border-radius:12px;padding:1.4rem 1.5rem;display:flex;gap:1.25rem;transition:border-color .2s,transform .2s;}
+.exp-item:hover{border-color:var(--p);transform:translateX(4px);}
+.dot{width:10px;height:10px;background:var(--p);border-radius:50%;margin-top:6px;flex-shrink:0;box-shadow:0 0 8px rgba(14,165,233,.5);}
+.exp-item h4{font-weight:700;margin-bottom:.2rem;font-size:.95rem;}
+.exp-item .pl{color:var(--p);font-size:.82rem;font-weight:500;}
+.exp-item .dc{color:var(--mu);font-size:.84rem;margin-top:.35rem;line-height:1.65;}
+
+/* SKILLS */
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.sgrp{background:var(--ca);border:1px solid var(--bo);border-radius:14px;padding:1.5rem;}
+.sgrp h3{font-size:.9rem;font-weight:700;margin-bottom:1.25rem;color:var(--ac);text-transform:uppercase;letter-spacing:.5px;}
+.sr{margin-bottom:1rem;}
+.sr .lb{display:flex;justify-content:space-between;font-size:.82rem;color:var(--mu);margin-bottom:.35rem;}
+.btr{background:var(--bg3);border-radius:999px;height:7px;overflow:hidden;}
+.brf{height:7px;border-radius:999px;background:linear-gradient(to right,var(--p),var(--ac));transition:width 1s ease;}
+.stags{display:flex;flex-wrap:wrap;gap:.45rem;}
+.stag{background:var(--bg3);color:var(--tx);padding:.27rem .78rem;border-radius:999px;font-size:.77rem;}
+
+/* CREDENTIALS */
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;}
+.cc{background:var(--ca);border:1px solid var(--bo);border-radius:13px;padding:1.5rem;text-align:center;transition:border-color .2s,transform .2s;}
+.cc:hover{border-color:var(--p);transform:translateY(-3px);}
+.cc .ci{font-size:2rem;margin-bottom:.65rem;}
+.cc h4{font-weight:700;margin-bottom:.22rem;font-size:.93rem;}
+.cc p{color:var(--mu);font-size:.79rem;}
+.cc .yr{color:var(--p);font-size:.78rem;font-weight:700;margin-top:.38rem;}
+</style>
+
+<section id="academics" class="alt">
+<div class="con">
+  <p class="st" data-en="Academic <span>Record</span>" data-am="አካዳሚያዊ <span>መዝገብ</span>">Academic <span>Record</span></p>
+  <p class="ss" data-en="Education and academic achievements" data-am="ትምህርት እና አካዳሚያዊ ስኬቶች">Education and academic achievements</p>
+  <div class="edu-card">
+    <div>
+      <p class="deg" data-en="BSc in Nursing" data-am="በነርሲንግ የሳይንስ ምሩቅ">BSc in Nursing</p>
+      <p class="sch" data-en="Woldia University · College of Health Sciences" data-am="ወልዲያ ዩኒቨርሲቲ · የጤና ሳይንሶች ኮሌጅ">Woldia University · College of Health Sciences</p>
+      <p class="per">2022 – 2026 · Woldia, Ethiopia &nbsp;|&nbsp; CGPA: <strong style="color:var(--p)">3.78</strong> &nbsp;|&nbsp; Exit Exam: <strong style="color:var(--p)">71%</strong></p>
+      <div class="tags">
+        <span class="tag">Medical-Surgical Nursing</span><span class="tag">Pediatric Nursing</span>
+        <span class="tag">Maternal &amp; Child Health</span><span class="tag">Community Nursing</span>
+        <span class="tag">Emergency Care</span><span class="tag">Psychiatric Nursing</span>
+        <span class="tag">Critical Care</span><span class="tag">Anatomy &amp; Physiology</span>
+        <span class="tag">Pharmacology</span><span class="tag">Nursing Research</span>
+      </div>
+    </div>
+    <div class="badge-bsc">BSc<br/>2026</div>
+  </div>
+</div>
+</section>
+
+<section id="clinical">
+<div class="con">
+  <p class="st" data-en="Clinical <span>Experience</span>" data-am="ክሊኒካዊ <span>ልምድ</span>">Clinical <span>Experience</span></p>
+  <p class="ss" data-en="Hands-on training across diverse healthcare settings" data-am="በተለያዩ የጤና አገልግሎት ቦታዎች ተግባራዊ ሥልጠና">Hands-on training across diverse healthcare settings</p>
+  <div class="exp-list">
+    <div class="exp-item"><div class="dot"></div><div><h4 data-en="Medical-Surgical Ward" data-am="ሕክምና-ቀዶ ጥገና ክፍል">Medical-Surgical Ward</h4><span class="pl">Hospital Rotation · Clinical Practicum</span><p class="dc" data-en="Provided direct patient care including wound management, IV therapy, medication administration, and vital signs monitoring." data-am="ቁስል አያያዝ፣ IV ሕክምና፣ መድሃኒት አስተዳደር እና ወሳኝ ምልክቶች ክትትል ጨምሮ ቀጥተኛ የታካሚ እንክብካቤ ሰጥቻለሁ።">Provided direct patient care including wound management, IV therapy, medication administration, and vital signs monitoring.</p></div></div>
+    <div class="exp-item"><div class="dot"></div><div><h4 data-en="Maternal &amp; Child Health Unit" data-am="የእናቶችና ህጻናት ጤና ክፍል">Maternal &amp; Child Health Unit</h4><span class="pl">MCH Rotation · Clinical Practicum</span><p class="dc" data-en="Assisted in antenatal care, labor and delivery, postpartum care, and neonatal assessment. Supported education for new mothers." data-am="ቅድመ ወሊድ እንክብካቤ፣ ምጥ እና ወሊድ፣ ድህረ ወሊድ እንክብካቤ እና ለአዲስ እናቶች ትምህርት ድጋፍ ሰጥቻለሁ።">Assisted in antenatal care, labor and delivery, postpartum care, and neonatal assessment. Supported education for new mothers.</p></div></div>
+    <div class="exp-item"><div class="dot"></div><div><h4 data-en="Pediatric Ward" data-am="የህጻናት ክፍል">Pediatric Ward</h4><span class="pl">Pediatric Rotation · Clinical Practicum</span><p class="dc" data-en="Cared for infants and children with acute and chronic illnesses using age-appropriate communication and family-centered care." data-am="እድሜ ተኮር ግንኙነት እና ቤተሰብ ተኮር እንክብካቤ ተጠቅሜ ለሕፃናት እና ልጆች እንክብካቤ ሰጥቻለሁ።">Cared for infants and children with acute and chronic illnesses using age-appropriate communication and family-centered care.</p></div></div>
+    <div class="exp-item"><div class="dot"></div><div><h4 data-en="Emergency &amp; OPD" data-am="ድንገተኛ እና ውጫዊ ታካሚ ክፍል">Emergency &amp; OPD</h4><span class="pl">Emergency Rotation · Clinical Practicum</span><p class="dc" data-en="Gained experience in triage, emergency assessment, first aid, and rapid patient stabilization in high-pressure environments." data-am="በከፍተኛ ጫና ባለው አካባቢ ትሪያጅ፣ ድንገተኛ ምዘና፣ የመጀመሪያ ርዳታ እና ታካሚ ማረጋጋት ልምድ አግኝቻለሁ።">Gained experience in triage, emergency assessment, first aid, and rapid patient stabilization in high-pressure environments.</p></div></div>
+    <div class="exp-item"><div class="dot"></div><div><h4 data-en="Community &amp; Public Health" data-am="ማህበረሰብ እና የህዝብ ጤና">Community &amp; Public Health</h4><span class="pl">Community Practicum · Woldia University</span><p class="dc" data-en="Conducted health education sessions, immunization outreach, and home visits collaborating with health extension workers." data-am="ከጤና ኤክስቴንሽን ሰራተኞች ጋር ትብብር ያለው የጤና ትምህርት፣ የክትባት ዘመቻ እና የቤት ጉብኝቶች አካሂጄያለሁ።">Conducted health education sessions, immunization outreach, and home visits collaborating with health extension workers.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section id="skills" class="alt">
+<div class="con">
+  <p class="st" data-en="Core <span>Skills</span>" data-am="ዋና <span>ክህሎቶች</span>">Core <span>Skills</span></p>
+  <p class="ss" data-en="Clinical competencies and professional strengths" data-am="ክሊኒካዊ ብቃቶች እና ሙያዊ ጥንካሬዎች">Clinical competencies and professional strengths</p>
+  <div class="sg2">
+    <div class="sgrp">
+      <h3 data-en="Clinical Skills" data-am="ክሊኒካዊ ክህሎቶች">Clinical Skills</h3>
+      <div class="sr"><div class="lb"><span data-en="Patient Assessment &amp; Care" data-am="የታካሚ ምዘና">Patient Assessment &amp; Care</span><span>92%</span></div><div class="btr"><div class="brf" style="width:92%"></div></div></div>
+      <div class="sr"><div class="lb"><span data-en="Medication Administration" data-am="መድሃኒት አስተዳደር">Medication Administration</span><span>88%</span></div><div class="btr"><div class="brf" style="width:88%"></div></div></div>
+      <div class="sr"><div class="lb"><span data-en="Wound Care &amp; IV Therapy" data-am="ቁስል እንክብካቤ">Wound Care &amp; IV Therapy</span><span>85%</span></div><div class="btr"><div class="brf" style="width:85%"></div></div></div>
+      <div class="sr"><div class="lb"><span data-en="Emergency Response" data-am="ድንገተኛ ምላሽ">Emergency Response</span><span>82%</span></div><div class="btr"><div class="brf" style="width:82%"></div></div></div>
+      <div class="sr"><div class="lb"><span data-en="Maternal &amp; Child Health" data-am="የእናቶችና ህጻናት ጤና">Maternal &amp; Child Health</span><span>87%</span></div><div class="btr"><div class="brf" style="width:87%"></div></div></div>
+    </div>
+    <div class="sgrp">
+      <h3 data-en="Soft Skills" data-am="ሶፍት ክህሎቶች">Soft Skills</h3>
+      <div class="stags">
+        <span class="stag" data-en="Compassionate Care" data-am="ርኅሩኅ እንክብካቤ">Compassionate Care</span>
+        <span class="stag" data-en="Critical Thinking" data-am="ወሳኝ አስተሳሰብ">Critical Thinking</span>
+        <span class="stag" data-en="Team Collaboration" data-am="የቡድን ትብብር">Team Collaboration</span>
+        <span class="stag" data-en="Communication" data-am="ግንኙነት">Communication</span>
+        <span class="stag" data-en="Adaptability" data-am="መላመድ">Adaptability</span>
+        <span class="stag" data-en="Time Management" data-am="ጊዜ አያያዝ">Time Management</span>
+        <span class="stag" data-en="Ethical Practice" data-am="ሥነ ምግባር">Ethical Practice</span>
+        <span class="stag" data-en="Patient Education" data-am="ታካሚ ትምህርት">Patient Education</span>
+        <span class="stag" data-en="Stress Management" data-am="ጭንቀት አያያዝ">Stress Management</span>
+        <span class="stag" data-en="Cultural Sensitivity" data-am="ባህላዊ ስሜት">Cultural Sensitivity</span>
+      </div>
+      <h3 style="margin-top:1.5rem;" data-en="Languages" data-am="ቋንቋዎች">Languages</h3>
+      <div class="stags" style="margin-top:.75rem;">
+        <span class="stag" data-en="Amharic — Native" data-am="አማርኛ — ተወላጅ">Amharic — Native</span>
+        <span class="stag" data-en="English — Professional" data-am="እንግሊዝኛ — ሙያዊ">English — Professional</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="credentials">
+<div class="con">
+  <p class="st" data-en="Awards &amp; <span>Credentials</span>" data-am="ሽልማቶች እና <span>ማረጋገጫዎች</span>">Awards &amp; <span>Credentials</span></p>
+  <p class="ss" data-en="Certifications, licenses, and achievements" data-am="ሰርቲፊኬቶች፣ ፈቃዶች እና ስኬቶች">Certifications, licenses, and achievements</p>
+  <div class="cg">
+    <div class="cc"><div class="ci">🎓</div><h4 data-en="BSc in Nursing" data-am="BSc ነርሲንግ">BSc in Nursing</h4><p>Woldia University</p><p class="yr">2026</p></div>
+    <div class="cc"><div class="ci">📊</div><h4 data-en="Exit Exam — 71%" data-am="የወጪ ፈተና — 71%">Exit Exam — 71%</h4><p data-en="Ethiopian Higher Education" data-am="ኢትዮጵያ ከፍተኛ ትምህርት">Ethiopian Higher Education</p><p class="yr">2026</p></div>
+    <div class="cc"><div class="ci">🏥</div><h4 data-en="Clinical Practicum Cert." data-am="ክሊኒካዊ ልምምድ ሰርቲፊኬት">Clinical Practicum Cert.</h4><p data-en="Multi-dept hospital rotations" data-am="ብዙ ክፍሎች ሆስፒታል ሽክርክሪ">Multi-dept hospital rotations</p><p class="yr">2023–2026</p></div>
+    <div class="cc"><div class="ci">🩺</div><h4 data-en="BLS / First Aid" data-am="BLS / የመጀመሪያ ርዳታ">BLS / First Aid</h4><p data-en="Basic Life Support" data-am="መሰረታዊ ህይወት ድጋፍ">Basic Life Support</p><p class="yr">2025</p></div>
+    <div class="cc"><div class="ci">🌍</div><h4 data-en="Community Outreach" data-am="የማህበረሰብ ዘመቻ">Community Outreach</h4><p data-en="Preventive care &amp; health ed." data-am="ቅድመ ጥንቃቄ እና የጤና ትምህርት">Preventive care &amp; health ed.</p><p class="yr">2024–2026</p></div>
+    <div class="cc"><div class="ci">⭐</div><h4 data-en="Academic Excellence" data-am="አካዳሚያዊ ብቃት">Academic Excellence</h4><p data-en="CGPA 3.78 · 4 years" data-am="GPA 3.78 · 4 ዓመታት">CGPA 3.78 · 4 years</p><p class="yr">2022–2026</p></div>
+    <div class="cc" style="border-color:rgba(168,85,247,.35);"><div class="ci">🏛️</div><h4 data-en="Student Union Leader" data-am="የተማሪዎች ማህበር መሪ">Student Union Leader</h4><p data-en="Woldia University Student Union" data-am="ወልዲያ ዩኒቨርሲቲ የተማሪዎች ማህበር">Woldia University Student Union</p><p class="yr" style="color:#a855f7;">2022–2026</p></div>
+  </div>
+</div>
+</section>
+
+<!-- LEADERSHIP SECTION -->
+<style>
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+.lead-card{background:var(--ca);border:1px solid var(--bo);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.lead-card:hover{border-color:#a855f7;transform:translateY(-3px);}
+.lead-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(to right,#a855f7,#7c3aed,#6366f1);}
+.lead-badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.3);color:#c084fc;padding:.3rem .85rem;border-radius:999px;font-size:.75rem;font-weight:600;margin-bottom:1rem;}
+.lead-card h3{font-size:1.1rem;font-weight:800;margin-bottom:.3rem;}
+.lead-card .lead-org{color:#a855f7;font-size:.88rem;font-weight:600;margin-bottom:.3rem;}
+.lead-card .lead-period{color:var(--mu);font-size:.8rem;margin-bottom:1rem;}
+.lead-card p{color:var(--mu);font-size:.87rem;line-height:1.75;margin-bottom:.75rem;}
+.lead-card p:last-child{margin-bottom:0;}
+.lead-points{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem;}
+.lead-point{display:flex;align-items:flex-start;gap:.65rem;font-size:.84rem;color:var(--mu);}
+.lead-point::before{content:'✦';color:#a855f7;flex-shrink:0;margin-top:.1rem;font-size:.75rem;}
+.lead-impact{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.25rem;}
+.limp{background:var(--bg2);border:1px solid var(--bo);border-radius:10px;padding:.85rem;text-align:center;}
+.limp .lv{font-size:1.4rem;font-weight:900;color:#a855f7;}
+.limp .ll{font-size:.72rem;color:var(--mu);margin-top:.2rem;}
+@media(max-width:768px){.lead-grid{grid-template-columns:1fr!important;}.lead-impact{grid-template-columns:1fr 1fr;}}
+</style>
+
+<section id="leadership" class="alt">
+<div class="con">
+  <p class="st" data-en="<span>Leadership</span> Experience" data-am="<span>አመራር</span> ልምድ"><span>Leadership</span> Experience</p>
+  <p class="ss" data-en="Student leadership and community impact at Woldia University" data-am="በወልዲያ ዩኒቨርሲቲ የተማሪ አመራር እና ማህበረሰብ ተጽዕኖ">Student leadership and community impact at Woldia University</p>
+
+  <div class="lead-grid">
+    <!-- Main leadership card -->
+    <div class="lead-card">
+      <div class="lead-badge">🏛️ <span data-en="Student Union" data-am="የተማሪዎች ማህበር">Student Union</span></div>
+      <h3 data-en="Student Union Leader" data-am="የተማሪዎች ማህበር መሪ">Student Union Leader</h3>
+      <div class="lead-org">Woldia University Student Union</div>
+      <div class="lead-period" data-en="📅 2022 – 2026 · Woldia, Ethiopia" data-am="📅 2022 – 2026 · ወልዲያ፣ ኢትዮጵያ">📅 2022 – 2026 · Woldia, Ethiopia</div>
+      <p data-en="Served as a student leader within the Woldia University Student Union throughout my four years of study, representing the interests and voices of nursing students in the College of Health Sciences." data-am="በወልዲያ ዩኒቨርሲቲ የተማሪዎች ማህበር ውስጥ በአራት ዓመት ጥናቴ ሙሉ ውስጥ እንደ ተማሪ መሪ አገልግያለሁ፤ የጤና ሳይንሶች ኮሌጅ የነርሲንግ ተማሪዎች ፍላጎቶችና ድምጽ ወክያለሁ።">Served as a student leader within the Woldia University Student Union throughout my four years of study, representing the interests and voices of nursing students in the College of Health Sciences.</p>
+      <p data-en="In this role, I developed strong leadership, communication, and conflict-resolution skills — coordinating student activities, advocating for academic welfare, and fostering a culture of collaboration and excellence among peers." data-am="በዚህ ሚና ጠንካራ አመራር፣ ግንኙነት እና ግጭት ማፍታቻ ክህሎቶች አዳብሬያለሁ — የተማሪ ተግባራትን ማስተባበር፣ ለአካዳሚያዊ ደህንነት መሟገት እና በእኩዮች መካከል ትብብር እና ብቃት ያለው ባህል ማጎልበት።">In this role, I developed strong leadership, communication, and conflict-resolution skills — coordinating student activities, advocating for academic welfare, and fostering a culture of collaboration and excellence among peers.</p>
+      <div class="lead-points">
+        <div class="lead-point" data-en="Represented nursing students in university-wide academic and policy discussions" data-am="ዩኒቨርሲቲ አቀፍ አካዳሚያዊ እና ፖሊሲ ውይይቶች ውስጥ የነርሲንግ ተማሪዎችን ወክያለሁ">Represented nursing students in university-wide academic and policy discussions</div>
+        <div class="lead-point" data-en="Organized health awareness campaigns and peer-education sessions on campus" data-am="በካምፓስ ላይ የጤና ግንዛቤ ዘመቻዎችና የእኩዮች ትምህርት ክፍለ ጊዜዎችን አዘጋጅቻለሁ">Organized health awareness campaigns and peer-education sessions on campus</div>
+        <div class="lead-point" data-en="Mediated student concerns and collaborated with faculty to improve learning conditions" data-am="የተማሪ ጭንቀቶችን ሸምግሌ እና የትምህርት ሁኔታዎችን ለማሻሻል ከፋኩልቲ ጋር ትብብር አድርጊያለሁ">Mediated student concerns and collaborated with faculty to improve learning conditions</div>
+        <div class="lead-point" data-en="Coordinated volunteer health outreach programs serving local communities in Woldia" data-am="ወልዲያ ውስጥ አካባቢ ማህበረሰቦችን የሚያገለግሉ የበጎ ፍቃደኝነት የጤና ዘመቻ መርሃ ግብሮችን አስተባብሬያለሁ">Coordinated volunteer health outreach programs serving local communities in Woldia</div>
+      </div>
+    </div>
+
+    <!-- Impact + skills side -->
+    <div>
+      <div class="lead-card" style="margin-bottom:1.5rem;">
+        <div class="lead-badge">💡 <span data-en="Leadership Skills Gained" data-am="የተገኙ አመራር ክህሎቶች">Leadership Skills Gained</span></div>
+        <div class="lead-points">
+          <div class="lead-point" data-en="Public speaking and student representation" data-am="ይፋዊ ንግግር እና የተማሪ ውክልና">Public speaking and student representation</div>
+          <div class="lead-point" data-en="Event planning and coordination" data-am="ዝግጅት እቅድ ማውጣት እና ማስተባበር">Event planning and coordination</div>
+          <div class="lead-point" data-en="Conflict resolution and negotiation" data-am="ግጭት ፍቻ እና ድርድር">Conflict resolution and negotiation</div>
+          <div class="lead-point" data-en="Team motivation and peer mentoring" data-am="የቡድን ማነሳሳት እና የእኩዮች አማካሪነት">Team motivation and peer mentoring</div>
+          <div class="lead-point" data-en="Community health advocacy" data-am="የማህበረሰብ ጤና ቁርጠኝነት">Community health advocacy</div>
+          <div class="lead-point" data-en="Strategic planning and decision making" data-am="ስትራቴጂካዊ እቅድ ማውጣት እና ውሳኔ ሰጭነት">Strategic planning and decision making</div>
+        </div>
+      </div>
+      <div class="lead-card">
+        <div class="lead-badge">📈 <span data-en="Impact" data-am="ተጽዕኖ">Impact</span></div>
+        <div class="lead-impact">
+          <div class="limp"><div class="lv">4</div><div class="ll" data-en="Years of Service" data-am="የአገልግሎት ዓመታት">Years of Service</div></div>
+          <div class="limp"><div class="lv">100+</div><div class="ll" data-en="Students Represented" data-am="የወከሏቸው ተማሪዎች">Students Represented</div></div>
+          <div class="limp"><div class="lv">10+</div><div class="ll" data-en="Events Organized" data-am="የተዘጋጁ ዝግጅቶች">Events Organized</div></div>
+          <div class="limp"><div class="lv">🏛️</div><div class="ll" data-en="Woldia University" data-am="ወልዲያ ዩኒቨርሲቲ">Woldia University</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<style>
+.docs{display:flex;flex-direction:column;gap:.9rem;}
+.doc{background:var(--ca);border:1px solid var(--bo);border-radius:13px;padding:1.25rem 1.6rem;display:flex;align-items:center;gap:1.25rem;transition:border-color .2s,transform .2s;}
+.doc:hover{border-color:var(--p);transform:translateX(4px);}
+.doc-ic{font-size:1.8rem;flex-shrink:0;}
+.doc-info{flex:1;}
+.doc-info h4{font-weight:700;font-size:.95rem;margin-bottom:.18rem;}
+.doc-info p{color:var(--mu);font-size:.8rem;}
+.dbtn{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;padding:.6rem 1.3rem;border-radius:8px;font-weight:700;font-size:.82rem;text-decoration:none;transition:all .2s;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 14px rgba(14,165,233,.3);}
+.dbtn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(14,165,233,.4);}
+.cv-banner{background:linear-gradient(135deg,rgba(14,165,233,.13),rgba(56,189,248,.06));border:1px solid rgba(14,165,233,.32);border-radius:16px;padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;max-width:660px;margin:0 auto 2.5rem;}
+.cv-banner h3{font-size:1rem;font-weight:700;margin-bottom:.25rem;}
+.cv-banner p{color:var(--mu);font-size:.83rem;}
+.ccards{display:flex;justify-content:center;gap:1.1rem;flex-wrap:wrap;}
+.ccard{background:var(--ca);border:1px solid var(--bo);border-radius:13px;padding:1.25rem 1.6rem;text-align:center;min-width:170px;transition:border-color .2s,transform .2s;text-decoration:none;display:block;}
+.ccard:hover{border-color:var(--p);transform:translateY(-3px);}
+.ccard .cci{font-size:1.6rem;margin-bottom:.4rem;}
+.ccard .ccl{font-size:.73rem;color:var(--mu);margin-bottom:.28rem;text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
+.ccard .ccv{color:var(--tx);font-size:.85rem;font-weight:600;word-break:break-all;transition:color .2s;}
+.ccard:hover .ccv{color:var(--p);}
+footer{text-align:center;padding:2.5rem 1.5rem;color:var(--mu);font-size:.8rem;border-top:1px solid var(--bo);background:var(--bg);}
+footer .fl{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+footer .fl a{color:var(--mu);text-decoration:none;font-size:.82rem;transition:color .2s;}
+footer .fl a:hover{color:var(--p);}
+@media(max-width:768px){.about-grid,.sg2,.edu-card{grid-template-columns:1fr!important;}nav ul{display:none!important;}.ham{display:block!important;}}
+</style>
+
+<style>
+/* DOCUMENT GRID */
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.doc-card{background:var(--ca);border:1px solid var(--bo);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;}
+.doc-card:hover{border-color:var(--p);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.2);}
+.doc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--p),var(--ac));z-index:5;}
+.doc-preview{width:100%;height:240px;background:var(--bg3);border-bottom:1px solid var(--bo);overflow:hidden;position:relative;}
+.doc-preview embed{width:100%;height:100%;border:none;pointer-events:none;}
+.doc-preview .dp-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(15,23,42,.6) 100%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:.75rem;gap:.5rem;}
+[data-theme="light"] .dp-overlay{background:linear-gradient(to bottom,transparent 60%,rgba(255,255,255,.7) 100%);}
+.dp-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .85rem;border-radius:7px;font-size:.74rem;font-weight:700;text-decoration:none;transition:all .2s;font-family:inherit;cursor:pointer;border:none;backdrop-filter:blur(8px);}
+.dp-btn-open{background:rgba(14,165,233,.85);color:#fff;}
+.dp-btn-open:hover{background:var(--p);}
+.dp-btn-dl{background:rgba(30,41,59,.8);color:var(--tx);border:1px solid var(--bo);}
+[data-theme="light"] .dp-btn-dl{background:rgba(255,255,255,.85);}
+.dp-btn-dl:hover{border-color:var(--p);color:var(--p);}
+.doc-info{padding:1rem 1.25rem;}
+.doc-info .di-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;}
+.doc-info .di-ic{font-size:1.2rem;}
+.doc-info h4{font-weight:700;font-size:.9rem;margin-bottom:.12rem;}
+.doc-info p{font-size:.76rem;color:var(--mu);margin-bottom:.75rem;}
+.doc-info .di-actions{display:flex;gap:.5rem;margin-top:.5rem;}
+.di-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .8rem;border-radius:7px;font-size:.73rem;font-weight:700;text-decoration:none;transition:all .2s;font-family:inherit;cursor:pointer;border:none;}
+.di-btn-open{background:var(--bg3);color:var(--tx);border:1px solid var(--bo);}
+.di-btn-open:hover{border-color:var(--p);color:var(--p);}
+.di-btn-dl{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;box-shadow:0 2px 10px rgba(14,165,233,.3);}
+.di-btn-dl:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(14,165,233,.4);}
+@media(max-width:700px){.doc-grid{grid-template-columns:1fr!important;}.doc-preview{height:200px;}}
+</style>
+
+<section id="documents" class="alt">
+<div class="con">
+  <p class="st" data-en="Official <span>Documents</span>" data-am="ይፋዊ <span>ሰነዶች</span>">Official <span>Documents</span></p>
+  <p class="ss" data-en="Preview, view, and download Kidanemariam's verified official documents" data-am="የኪዳነ ማርያምን ይፋዊ ሰነዶች ይመልከቱ እና ያውርዱ">Preview, view, and download Kidanemariam's verified official documents</p>
+
+  <div class="doc-grid">
+
+    <!-- CV & RESUME -->
+    <div class="doc-card">
+      <div class="doc-preview">
+        <embed src="Kidane-CV-Resume.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+        <div class="dp-overlay">
+          <a href="Kidane-CV-Resume.pdf" target="_blank" class="dp-btn dp-btn-open">🔗 Open</a>
+          <a href="Kidane-CV-Resume.pdf" download="Kidanemariam-Sisay-CV-Resume.pdf" class="dp-btn dp-btn-dl">⬇ Save</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="di-row"><span class="di-ic">📄</span><h4 data-en="CV & Resume" data-am="ሲቪ እና ፍሬዘሬ">CV & Resume</h4></div>
+        <p data-en="Full curriculum vitae · Woldia University · 2026" data-am="ሙሉ ሲቪ · ወልዲያ ዩኒቨርሲቲ · 2026">Full curriculum vitae · Woldia University · 2026</p>
+        <div class="di-actions">
+          <a href="Kidane-CV-Resume.pdf" target="_blank" class="di-btn di-btn-open">🔗 View</a>
+          <a href="Kidane-CV-Resume.pdf" download="Kidanemariam-Sisay-CV-Resume.pdf" class="di-btn di-btn-dl">⬇ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATE -->
+    <div class="doc-card">
+      <div class="doc-preview">
+        <embed src="certeficate.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+        <div class="dp-overlay">
+          <a href="certeficate.pdf" target="_blank" class="dp-btn dp-btn-open">🔗 Open</a>
+          <a href="certeficate.pdf" download="Certificate.pdf" class="dp-btn dp-btn-dl">⬇ Save</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="di-row"><span class="di-ic">🏅</span><h4 data-en="Graduation Certificate" data-am="የምረቃ ሰርቲፊኬት">Graduation Certificate</h4></div>
+        <p data-en="BSc Nursing · Woldia University · 2026" data-am="BSc ነርሲንግ · ወልዲያ ዩኒቨርሲቲ · 2026">BSc Nursing · Woldia University · 2026</p>
+        <div class="di-actions">
+          <a href="certeficate.pdf" target="_blank" class="di-btn di-btn-open">🔗 View</a>
+          <a href="certeficate.pdf" download="Certificate.pdf" class="di-btn di-btn-dl">⬇ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECOMMENDATION -->
+    <div class="doc-card">
+      <div class="doc-preview">
+        <embed src="Recommendation-Letters.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+        <div class="dp-overlay">
+          <a href="Recommendation-Letters.pdf" target="_blank" class="dp-btn dp-btn-open">🔗 Open</a>
+          <a href="Recommendation-Letters.pdf" download="Recommendation-Letters.pdf" class="dp-btn dp-btn-dl">⬇ Save</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="di-row"><span class="di-ic">✉️</span><h4 data-en="Recommendation Letter" data-am="የምስክርነት ደብዳቤ">Recommendation Letter</h4></div>
+        <p data-en="Official letter · Woldia University · 2026" data-am="ይፋዊ ደብዳቤ · ወልዲያ ዩኒቨርሲቲ · 2026">Official letter · Woldia University · 2026</p>
+        <div class="di-actions">
+          <a href="Recommendation-Letters.pdf" target="_blank" class="di-btn di-btn-open">🔗 View</a>
+          <a href="Recommendation-Letters.pdf" download="Recommendation-Letters.pdf" class="di-btn di-btn-dl">⬇ Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEREJA -->
+    <div class="doc-card">
+      <div class="doc-preview">
+        <embed src="mereja.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf"></embed>
+        <div class="dp-overlay">
+          <a href="mereja.pdf" target="_blank" class="dp-btn dp-btn-open">🔗 Open</a>
+          <a href="mereja.pdf" download="Mereja.pdf" class="dp-btn dp-btn-dl">⬇ Save</a>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="di-row"><span class="di-ic">📋</span><h4 data-en="Mereja Document" data-am="ምረጃ ሰነድ">Mereja Document</h4></div>
+        <p data-en="Official supporting document · 2026" data-am="ይፋዊ ድጋፍ ሰነድ · 2026">Official supporting document · 2026</p>
+        <div class="di-actions">
+          <a href="mereja.pdf" target="_blank" class="di-btn di-btn-open">🔗 View</a>
+          <a href="mereja.pdf" download="Mereja.pdf" class="di-btn di-btn-dl">⬇ Download</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="contact" style="border-top:1px solid var(--bo);">
+<div class="con" style="text-align:center;">
+  <p class="st" data-en="Let's <span>Connect</span>" data-am="እንገናኝ <span>አሁን</span>">Let's <span>Connect</span></p>
+  <p class="ss" style="max-width:500px;margin:0 auto 2.5rem;" data-en="Ready to contribute from day one. Open to hospital, NGO, community health, and any opportunity to grow as a nursing professional." data-am="ከቀን አንድ ጀምሮ አስተዋፅዖ ለማበርከት ዝግጁ ነኝ።">Ready to contribute from day one. Open to hospital, NGO, community health, and any opportunity to grow as a nursing professional.</p>
+  <div class="cv-banner">
+    <div><h3>📄 CV &amp; Resume</h3><p data-en="Download Kidanemariam's full CV and Resume PDF" data-am="ሙሉ ሲቪ ያውርዱ">Download Kidanemariam's full CV and Resume PDF</p></div>
+    <a href="Kidane-CV-Resume.pdf" download="Kidanemariam-Sisay-CV-Resume.pdf" class="dbtn">⬇ Download PDF</a>
+  </div>
+  <div class="ccards">
+    <a href="mailto:kidanemariamsisay19@gmail.com" class="ccard"><div class="cci">📧</div><div class="ccl" data-en="Email" data-am="ኢሜይል">Email</div><div class="ccv">kidanemariamsisay19@gmail.com</div></a>
+    <a href="tel:+251902126536" class="ccard"><div class="cci">📞</div><div class="ccl" data-en="Phone" data-am="ስልክ">Phone</div><div class="ccv">+251 902 126 536</div></a>
+    <a href="https://t.me/kidanemariam" target="_blank" rel="noreferrer" class="ccard"><div class="cci">✈️</div><div class="ccl">Telegram</div><div class="ccv">@kidanemariam</div></a>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="fl">
+    <a href="#about" data-en="About" data-am="ስለ እኔ">About</a>
+    <a href="#academics" data-en="Academics" data-am="ትምህርት">Academics</a>
+    <a href="#clinical" data-en="Clinical" data-am="ክሊኒካዊ">Clinical</a>
+    <a href="#contact" data-en="Contact" data-am="አግኙኝ">Contact</a>
+  </div>
+  <p data-en="© 2026 Kidanemariam Sisay · BSc Nursing · Woldia University" data-am="© 2026 ኪዳነ ማርያም ሲሳይ · BSc ነርሲንግ · ወልዲያ ዩኒቨርሲቲ">© 2026 Kidanemariam Sisay · BSc Nursing · Woldia University</p>
+</footer>
+
+<script>
+// DOC TABS
+function showDoc(i){
+  document.querySelectorAll('.doc-panel').forEach((p,idx)=>p.style.display=idx===i?'block':'none');
+  document.querySelectorAll('.dtab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+}
+
+// THEME
+function toggleTheme(){
+  const h=document.documentElement;
+  const isDark=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('themeBtn').textContent=isDark?'☀️ Light':'🌙 Dark';
+}
+
+// LANGUAGE
+let currentLang='en';
+function toggleLang(){
+  currentLang=currentLang==='en'?'am':'en';
+  document.documentElement.setAttribute('data-lang',currentLang);
+  document.getElementById('langBtn').textContent=currentLang==='en'?'🇪🇹 አማርኛ':'🇺🇸 English';
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const val=el.getAttribute('data-'+currentLang);
+    if(val) el.innerHTML=val;
+  });
+}
+
+// MOBILE MENU
+function toggleMob(){document.getElementById('mob').classList.toggle('open');}
+function closeMob(){document.getElementById('mob').classList.remove('open');}
+
+// SCROLL ACTIVE NAV
+window.addEventListener('scroll',()=>{
+  const secs=document.querySelectorAll('section[id]');
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  document.querySelectorAll('nav ul a').forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+cur?'var(--p)':'var(--mu)';
+  });
+});
+
+// ANIMATE BARS ON SCROLL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.brf').forEach(b=>{
+        const w=b.style.width;b.style.width='0';
+        setTimeout(()=>{b.style.width=w;},100);
+      });
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('#skills').forEach(s=>obs.observe(s));
+
+// TYPED EFFECT on hero name
+window.addEventListener('load',()=>{
+  const el=document.querySelector('.hero h1 .name');
+  if(!el)return;
+  const text='Kidanemariam Sisay';
+  el.textContent='';
+  let i=0;
+  const t=setInterval(()=>{
+    el.textContent+=text[i];
+    i++;
+    if(i>=text.length)clearInterval(t);
+  },60);
+});
+</script>
+</body>
+</html>

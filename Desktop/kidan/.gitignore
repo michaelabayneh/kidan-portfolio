@@ -1,0 +1,8 @@
+node_modules/
+kidane-portfolio/
+.vscode/
+_hero.html
+photo_0.jpg
+package-lock.json
+package.json
+*.log
